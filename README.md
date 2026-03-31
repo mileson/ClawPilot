@@ -1,89 +1,92 @@
-# CJFClawPilot
+# ClawPilot
 
-**Self-hosted multi-agent operations platform with Feishu integration.**
+> Self-hosted multi-agent operations platform with one-click Feishu integration.
 
-CJFClawPilot helps you create, manage, and coordinate AI agents through Feishu (Lark). One-click Feishu app creation, automatic pairing, AI-generated agent avatars, and task management out of the box.
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js&logoColor=white)](https://nextjs.org)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://docker.com)
 
-## Highlights
+[中文文档](./README_CN.md)
 
-- **One-click Feishu Agent onboarding** — Automatically create a Feishu bot app and claim your agent in seconds
-- **AI-generated agent avatars** — Generate animated agent personas with working/idle/offline/crashed states
-- **Agent management workspace** — Card-based agent dashboard with status, channels, and activity logs
-- **Task collaboration** — Create, dispatch, submit, and review tasks across agents
-- **Training system** — Structured onboarding with training modules and run tracking
+## Features
+
+- **One-click Feishu Agent onboarding** — Automatically create a Feishu bot app and claim your agent through a guided wizard
+- **AI-generated agent avatars** — Generate animated agent personas with working/idle/offline/crashed states using AI image generation
+- **Agent management workspace** — Card-based dashboard with status monitoring, channel binding, and activity logs
+- **Task collaboration** — Full task lifecycle: create, dispatch, submit, and review across agents
+- **Training system** — Structured onboarding with training modules, document management, and run tracking
 - **Leaderboard** — Performance rankings across your agent fleet
+- **i18n ready** — Built-in English and Simplified Chinese support
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Backend | Python, FastAPI, SQLite |
+| Frontend | Next.js 14 (App Router), Tailwind CSS v4 |
+| UI Components | shadcn/ui style, Phosphor Icons |
+| Containerization | Docker, Docker Compose |
 
 ## Quick Start
 
 ### Prerequisites
 
-- Docker & Docker Compose
-- (Optional) A Feishu developer account for bot integration
-- (Optional) An API key for AI image generation (APIMart or OpenRouter)
+- [Docker](https://docs.docker.com/get-docker/) & Docker Compose
+- (Optional) A [Feishu developer account](https://open.feishu.cn/) for bot integration
+- (Optional) An API key from [APIMart](https://apimart.ai/) or [OpenRouter](https://openrouter.ai/) for AI-generated avatars
 
-### 1. Clone & Configure
+### Installation
 
 ```bash
-git clone https://github.com/Mileson/CJFClawPilot.git
-cd CJFClawPilot
+git clone https://github.com/Mileson/ClawPilot.git
+cd ClawPilot
 cp .env.example .env
-```
-
-### 2. Launch
-
-```bash
 docker compose -f docker-compose.dev.yml up --build
 ```
 
-### 3. Access
+### Access
 
-- **Web UI**: http://127.0.0.1:3000
-- **API Docs**: http://127.0.0.1:8088/docs
+| Service | URL |
+|---------|-----|
+| Web UI | http://127.0.0.1:3000 |
+| API Docs | http://127.0.0.1:8088/docs |
 
-Default admin credentials are shown on first `bootstrap` run.
+Default admin credentials are displayed on first run.
 
-### 4. Create Your First Agent
+### Create Your First Agent
 
-1. Open the Web UI and go to **Start Hub**
-2. Click **Add Agent** → Choose **Feishu**
+1. Open the Web UI and navigate to **Start Hub**
+2. Click **Add Agent** and choose **Feishu**
 3. The platform will automatically create a Feishu bot app for you
 4. Send any message to the bot in Feishu
-5. Paste the pairing text back in CJFClawPilot
-6. Your agent is now claimed and ready!
+5. Paste the pairing text back into ClawPilot
+6. Your agent is now claimed and ready to work!
 
-## Architecture
+## Project Structure
 
 ```text
-Browser (Next.js UI)
-       |
-       v
- Next.js (web:3000)
- - shadcn/ui components
- - Phosphor icons
- - /api/* rewrite
-       |
-       v
- FastAPI (api:8088)
-       |
-       v
-    SQLite DB
+ClawPilot/
+├── app/                          # FastAPI backend
+│   ├── main.py                   # API routes & entry point
+│   ├── db.py                     # Database layer (SQLite)
+│   ├── schemas.py                # Pydantic models
+│   ├── first_lobster_jobs.py     # Feishu auto-claim jobs
+│   ├── scene_jobs.py             # Avatar generation tasks
+│   └── scene_image_generator.py  # AI image generation + local fallback
+├── web/                          # Next.js frontend
+│   ├── src/app/                  # App Router pages
+│   ├── src/components/           # UI components (shadcn/ui style)
+│   ├── src/lib/                  # API client, types, utilities
+│   └── src/i18n/                 # Internationalization (en-US, zh-CN)
+├── scripts/                      # Automation scripts
+├── tests/unit/                   # Unit tests
+└── docker-compose.dev.yml        # Development compose file
 ```
 
-## Environment Variables
+## API Reference
 
-Key variables in `.env`:
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `AGENT_SCENE_PROVIDER` | Image generation provider (`apimart` / `openrouter` / `auto`) | `auto` |
-| `AGENT_SCENE_LOCAL_FALLBACK` | Fall back to local animation when API fails | `false` |
-| `AGENT_SCENE_APIMART_API_TOKEN` | APIMart API key for image generation | (empty) |
-| `AGENT_SCENE_OPENROUTER_API_KEY` | OpenRouter API key for image generation | (empty) |
-| `FEISHU_USER_AUTH_AGENT_IDS` | Agent IDs allowed for user auth | `hr` |
-
-> **Note**: Scene avatar generation works without API keys if `AGENT_SCENE_LOCAL_FALLBACK=true`. For full AI-generated avatars, configure at least one provider.
-
-## Core API
+Core endpoints available in the public edition:
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
@@ -91,30 +94,43 @@ Key variables in `.env`:
 | `/api/agents` | GET | List all agents |
 | `/api/agents/basic-create` | POST | Create a new agent |
 | `/api/agents/{id}/channels/feishu` | POST | Connect Feishu channel |
-| `/api/agents/claim-first-lobster/auto-run` | POST | One-click claim agent |
+| `/api/agents/claim-first-lobster/auto-run` | POST | One-click agent claiming |
 | `/api/feishu/auto-create` | POST | Auto-create Feishu bot app |
 | `/api/agents/{id}/scenes/generate` | POST | Generate agent avatar |
 | `/api/tasks` | GET/POST | List / create tasks |
+| `/api/tasks/{id}/dispatch` | POST | Dispatch task to agent |
 | `/api/training/module` | GET | Get training module |
 | `/api/leaderboard` | GET | Get leaderboard |
 
-Full API documentation available at `/docs` when the server is running.
+Full interactive API documentation available at `/docs` when the server is running.
 
-## Tech Stack
+## Configuration
 
-- **Backend**: Python + FastAPI + SQLite
-- **Frontend**: Next.js 14 (App Router) + Tailwind CSS v4 + shadcn/ui
-- **Icons**: Phosphor Icons (`@phosphor-icons/react`)
-- **Containerization**: Docker + Docker Compose
+Key environment variables in `.env`:
 
-## License
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `AGENT_SCENE_PROVIDER` | Image generation provider (`apimart` / `openrouter` / `auto`) | `auto` |
+| `AGENT_SCENE_LOCAL_FALLBACK` | Fall back to local animation when API fails | `true` |
+| `AGENT_SCENE_APIMART_API_TOKEN` | APIMart API key for image generation | *(empty)* |
+| `AGENT_SCENE_OPENROUTER_API_KEY` | OpenRouter API key for image generation | *(empty)* |
 
-This project is licensed under the **Business Source License 1.1** (BUSL-1.1).
-
-- You may use, modify, and deploy this software for non-production purposes.
-- Production use requires a commercial license — see [LICENSE](./LICENSE) for details.
-- After the change date, the code will convert to GPL v2.0 or later.
+> **Tip**: Avatar generation works without API keys — set `AGENT_SCENE_LOCAL_FALLBACK=true` for local animation fallback. For full AI-generated avatars, configure at least one provider.
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+## Security
+
+If you discover a security vulnerability, please do NOT open a public issue. Instead, report it privately through GitHub Security Advisories.
+
+## License
+
+This project is licensed under the [Apache License 2.0](./LICENSE).
+
+## Author
+
+- X: [Mileson07](https://x.com/Mileson07)
+- Xiaohongshu: [超级峰](https://xhslink.com/m/4LnJ9aB1f97)
+- Douyin: [超级峰](https://v.douyin.com/rH645q7trd8/)
