@@ -1,0 +1,2405 @@
+{
+  "meta": {
+    "title": "ClawPilot",
+    "description": "ClawPilot multi-agent console"
+  },
+  "locale": {
+    "name": {
+      "zh-CN": "中文（简体）",
+      "en-US": "English"
+    }
+  },
+  "banner": {
+    "message": "We detected your browser language is {browserLanguage}. Do you want to switch to {browserLanguage}?",
+    "switch": "Switch to {browserLanguage}",
+    "dismiss": "Don't show again"
+  },
+  "brand": {
+    "name": "ClawPilot"
+  },
+  "nav": {
+    "start": "Start",
+    "agents": "Agent Workspace",
+    "addAgent": "Add Agent",
+    "scheduleTimeline": "Scheduled Jobs",
+    "agentConfigs": "Agent Config",
+    "repair": "Repair",
+    "rescueCenter": "Advanced Rescue",
+    "openclaw": "System Library",
+    "lobsterToolkit": "Skills Toolkit",
+    "leaderboard": "Leaderboard",
+    "dataAnalysis": "Data Analysis",
+    "accounts": "Employee Management",
+    "roles": "Role Management",
+    "systemSettings": "System Settings",
+    "tasks": "Collaboration",
+    "training": "Training & Onboarding",
+    "group": {
+      "start": "Get Started",
+      "agentManagement": "Agent Management",
+      "agentTasks": "Agent Tasks",
+      "runtimeRepair": "Runtime & Repair",
+      "insights": "Insights",
+      "management": "System & Security"
+    }
+  },
+  "dashboard": {
+    "overview": "Overview",
+    "stats": {
+      "agents": "Agents",
+      "tasks": "Tasks",
+      "training": "Training",
+      "topPoints": "Top Points"
+    }
+  },
+  "sidebar": {
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar",
+    "openNav": "Open navigation",
+    "expandNav": "Expand navigation",
+    "collapseNav": "Collapse navigation",
+    "membership": {
+      "freePlan": "Free",
+      "upgrade": "Upgrade"
+    }
+  },
+  "authGate": {
+    "checking": "Checking the control-plane session…"
+  },
+  "pages": {
+    "agents": {
+      "title": "Agent Workspace",
+      "subtitle": "Inspect each agent's workspace status, file entry points, and connection progress.",
+      "viewMode": {
+        "description": "Patrol mode keeps only the hero image and role summary, while management mode restores the full controls.",
+        "label": "List mode",
+        "manage": "Manage mode",
+        "patrol": "Patrol mode"
+      },
+      "unreachable": {
+        "title": "Local API is currently unreachable",
+        "description": "The Agents page needs the local control-plane API before it can render. The frontend is up, but the backend endpoint is not responding, so the page is showing a recovery card instead.",
+        "apiLabel": "Current API endpoint",
+        "apiHint": "Make sure this endpoint is reachable first, then reload the page.",
+        "errorLabel": "Error details",
+        "commandLabel": "Local startup command",
+        "commandHint": "If you are not running through Docker, these commands will start the local FastAPI service directly.",
+        "reload": "Reload page"
+      },
+      "empty": {
+        "title": "No agents are available yet",
+        "description": "The local OpenClaw config has been loaded, but no agents are declared in `agents.list`, so this page currently shows an empty list.",
+        "firstLobster": {
+          "cta": "Claim the first lobster 🦞",
+          "ctaHint": "Enter a name and choose an entry channel to automatically create the Feishu bot and finish the claim flow.",
+          "eyebrow": "First Agent Claim",
+          "title": "Claim the first lobster 🦞",
+          "description": "Choose the channel you want to connect first. The default workspace and advanced options are ready in the background, and the default Feishu path will auto-create the bot for you.",
+          "hero": {
+            "workspaceReady": "Default workspace ready",
+            "workspaceMissing": "Default workspace missing",
+            "focusPrimary": "Start with one entry channel",
+            "progressive": "Expand extra settings only when needed"
+          },
+          "close": "Close",
+          "loading": "Loading the default workspace bootstrap preview…",
+          "retry": "Reload",
+          "errors": {
+            "previewFailed": "Failed to load the default workspace preview. Please try again later.",
+            "claimFailed": "Failed to claim the lobster. Check the Feishu login session and try again.",
+            "weixinQrFailed": "Failed to get WeChat QR code. Please try again.",
+            "weixinQrNotConfirmed": "Please scan the QR code to authorize WeChat first.",
+            "weixinCliMissing": "The openclaw CLI was not found. Configure OPENCLAW_CLI_BIN for the server process, or make sure PATH includes /opt/homebrew/bin.",
+            "weixinQrTimeout": "Starting the WeChat QR login timed out. Please try again.",
+            "pairingTextInvalid": "A valid Feishu user id or Pairing code was not detected. Paste the full bot reply exactly as it appears.",
+            "pairingConfirmFailed": "Failed to finish pairing. Please try again.",
+            "pairingApproveFailed": "OpenClaw pairing approve failed: {reason}",
+            "pairingCliMissing": "No usable openclaw CLI is available in the current environment, so automatic pairing cannot finish yet.",
+            "pairingAgentMissing": "The current agent record is missing. Create it again and retry.",
+            "openChatBlocked": "The Feishu chat link is ready, but the browser blocked the new window. Allow pop-ups and try again."
+          },
+          "weixin": {
+            "loading": "Getting WeChat login QR code…",
+            "idle": "Click the button below to generate the claim QR code, then scan and confirm before claiming.",
+            "waitingTitle": "Waiting for scan",
+            "waitingHint": "Use WeChat to scan the QR code below and start the authorization.",
+            "scannedTitle": "Scanned, waiting for phone confirmation",
+            "scannedHint": "Continue the confirmation on your phone. Once confirmed, you can continue claiming.",
+            "confirmedTitle": "Confirmed, ready to claim",
+            "confirmedHint": "WeChat authorization is complete. You can now write the config and claim.",
+            "scanTitle": "Scan with WeChat",
+            "scanHint": "Open WeChat → Scan → Scan this QR code to authorize",
+            "scanned": "QR scanned. Please continue the confirmation on your phone.",
+            "confirmed": "WeChat authorized",
+            "expired": "QR code expired",
+            "retry": "Get new code"
+          },
+          "workspace": {
+            "title": "Default workspace",
+            "source": "Source: {source}",
+            "sources": {
+              "config": "openclaw.json.agents.defaults.workspace",
+              "fallback": "~/.openclaw/workspace fallback path"
+            },
+            "available": "Ready",
+            "unavailable": "Workspace missing",
+            "unavailableHint": "The default workspace directory is missing or not initialized yet. Run openclaw onboard first, then come back to claim the first lobster.",
+            "recommendedAgent": "Recommended agent entry: {name} ({id}), reusing the default workspace."
+          },
+          "files": {
+            "title": "Bootstrap files",
+            "missing": "Missing",
+            "previewReady": "Text preview loaded",
+            "previewUnavailable": "No text preview is available for this file",
+            "error": "Read failed: {error}",
+            "noPreview": "No text preview is available for this file."
+          },
+          "channels": {
+            "title": "Extra channels",
+            "description": "Start with one channel by default. If you need multi-channel binding, add the extra channels here."
+          },
+          "primary": {
+            "title": "Primary channel",
+            "description": "The primary channel defines the default runtime entry for the first agent. It is required when multiple channels are selected.",
+            "empty": "Select at least one channel first."
+          },
+          "steps": {
+            "choose": {
+              "kicker": "Step 1",
+              "title": "Choose the first channel",
+              "description": "Decide where the first lobster should start working. In most cases one channel is enough and advanced bindings can wait.",
+              "selected": "Primary",
+              "primary": "Primary",
+              "secondary": "Extra",
+              "available": "Switch to",
+              "requires": "Need: {fields}"
+            },
+            "name": {
+              "title": "Give it a name first",
+              "description": "This name will be used for the Feishu app and first-run setup of {agentName}.",
+              "label": "OpenClaw name",
+              "placeholder": "For example: ClawPilot",
+              "hint": "Pick a name you can recognize instantly. You can change it later."
+            },
+            "channel": {
+              "title": "Choose where it starts working",
+              "description": "Only Feishu and WeChat are shown here for now. Pick the entry channel first, then continue to create and claim.",
+              "recommended": "Recommended",
+              "defaultEntry": "Default entry"
+            },
+            "pairingHello": {
+              "title": "Send “Hello” to it in Feishu",
+              "description": "{agentName} has been created, but one final DM pairing step is still required.",
+              "badge": "Feishu Pairing",
+              "body": "Open the Feishu chat from the button below and send “Hello” to {agentName}. The bot will reply with a block of text containing your Feishu user id and a Pairing code. We will use that in the next step to finish the setup.",
+              "message": "Hello"
+            },
+            "pairingPaste": {
+              "title": "Paste the bot reply back here",
+              "description": "Paste the full reply from Feishu exactly as it appears. The system will parse it automatically and finish the pairing.",
+              "exampleTitle": "Example format",
+              "exampleBlock": "OpenClaw: access not configured.\nYour Feishu user id: ou_e70e90b5d6a24092d32291815085f0a1\nPairing code: PXE6J2Z7\nAsk the bot owner to approve with:\nopenclaw pairing approve feishu PXE6J2Z7",
+              "label": "Pairing text",
+              "placeholder": "Paste the entire bot reply here…",
+              "hint": "Do not split the fields manually. Just paste the original text."
+            },
+            "credentials": {
+              "kicker": "Step 2",
+              "title": "Configure current channel: {channel}",
+              "description": "You only need these credentials when doing a manual setup. When Feishu is selected, you can also try auto-create first."
+            },
+            "claim": {
+              "kicker": "Step 3",
+              "title": "Create and claim in one click",
+              "description": "This will auto-create the Feishu OpenClaw bot first, then generate the SOUL.md, workspace structure, and first-run setup from the official default templates, and finish the claim for {agentName}.",
+              "descriptionWeixin": "After the WeChat QR authorization is confirmed, the default workspace config will be written directly and the claim for {agentName} will be completed.",
+              "ready": "Ready to claim",
+              "missingFields": "{count} credential field(s) missing",
+              "workspaceBlocked": "Workspace unavailable"
+            }
+          },
+          "advanced": {
+            "title": "Custom settings",
+            "description": "Review manual credentials, extra channels, the default workspace, and bootstrap files.",
+            "open": "View detailed settings",
+            "close": "Hide detailed settings",
+            "secondaryCredentialsTitle": "Extra channel credentials"
+          },
+          "summary": {
+            "agent": "Agent entry",
+            "primary": "Current entry",
+            "workspace": "Default workspace",
+            "secondary": "Extra channels",
+            "credentials": "Credential progress",
+            "channels": "Enabled channels",
+            "advancedState": "More settings",
+            "advancedClosed": "Collapsed by default",
+            "advancedOpen": "Expanded",
+            "secondaryValue": "{count} extra channel(s) added",
+            "secondaryNone": "Current entry only"
+          },
+          "credentials": {
+            "title": "Channel credentials",
+            "tip": "Feishu uses appId/appSecret; Telegram uses botToken; Discord uses token.",
+            "empty": "Credential fields will appear here after you select one or more channels.",
+            "accountHint": "Will write accountId: {accountId}"
+          },
+          "autoCreate": {
+            "title": "Feishu auto-create",
+            "description": "Reuse the local browser login session and create the bot through the Feishu OpenClaw quick-create page.",
+            "hint": "Sign in to the Feishu Open Platform first. After success, appId / appSecret will be filled automatically and an instant chat entry will be provided.",
+            "start": "Start create",
+            "creating": "Creating...",
+            "completed": "Feishu credentials have been filled automatically. Click “Write openclaw.json and claim” below to finish the claim.",
+            "completedCdp": "Feishu credentials were filled by reusing the current Chrome session. Click “Write openclaw.json and claim” below to finish the claim.",
+            "openChat": "Open Feishu chat now",
+            "appDescription": "{agentName}, responsible for orchestrating the whole business",
+            "menuName": "/status Status",
+            "errors": {
+              "feishuLoginRequired": "Feishu login not detected. Sign in to the Feishu Open Platform and retry.",
+              "dependencyMissing": "UI automation dependency missing.",
+              "autoCreateFailed": "Failed to auto-create the Feishu app. Try again later."
+            }
+          },
+          "actions": {
+            "goSettings": "Go to multi-agent settings",
+            "next": "Next",
+            "back": "Back",
+            "claim": "Create and claim in one click",
+            "generateWeixinQr": "Generate claim QR code",
+            "generatingWeixinQr": "Generating QR code…",
+            "waitingWeixinQr": "Waiting for QR confirmation…",
+            "claimWeixin": "Write config and claim",
+            "claiming": "Creating and claiming…",
+            "claimingWeixin": "Claiming…",
+            "openFeishuChat": "Open Feishu chat",
+            "pairingNext": "I already sent it",
+            "completePairing": "Finish setup",
+            "completingPairing": "Finishing setup…",
+            "waitingLogin": "Waiting for and confirming Feishu sign-in…",
+            "claimHint": "The Feishu bot will be created automatically, then the current name, the official SOUL.md template, and the default workspace structure will be used to finish the claim for {agentName}.",
+            "claimHintWeixin": "After the WeChat QR authorization is confirmed, the current name and default workspace structure will be written to openclaw.json and the claim for {agentName} will be completed directly.",
+            "waitingLoginHint": "The Feishu sign-in page is open. Finish sign-in in the new browser window. If you already signed in, the system will actively revisit the OpenClaw page, confirm the session, and switch to “In progress” automatically.",
+            "claimingHint": "Feishu sign-in has been confirmed. The process is in progress: creating the bot, writing the config, and finishing the claim automatically.",
+            "manualFallback": "This channel still needs manual details. Expand the detailed settings to continue.",
+            "defaultFlowOnlyFeishu": "The current default generation flow supports Feishu first. One-click creation for other channels will be handled by the backend flow."
+          },
+          "run": {
+            "preparingTitle": "Preparing the auto-claim task",
+            "preparingDescription": "The system is starting the Feishu automation flow and will open the Feishu page shortly.",
+            "waitingLoginTitle": "Waiting for and confirming Feishu sign-in",
+            "waitingLoginDescription": "Complete sign-in in the browser window that was just opened. If sign-in is already done, the system will proactively revisit the OpenClaw page, confirm the session, and then switch to “In progress” automatically.",
+            "claimingTitle": "In progress",
+            "claimingDescription": "Feishu sign-in has been confirmed. The system is creating the bot, writing the config, and finishing the claim for {agentName}.",
+            "completedTitle": "Auto-claim completed",
+            "completedDescription": "{agentName} has been created and claimed. Send “Hello” to it in Feishu next to finish the final DM pairing.",
+            "failedTitle": "Auto-claim failed"
+          },
+          "validation": {
+            "channelRequired": "Select at least one channel.",
+            "primaryRequired": "You must choose a primary channel when multiple channels are selected.",
+            "fieldRequired": "{field} is required for {channel}.",
+            "fixFields": "Complete the required channel credentials before submitting.",
+            "workspaceUnavailable": "The default workspace is not available yet, so the first agent cannot be claimed.",
+            "nameRequired": "Enter an OpenClaw name first.",
+            "pairingTextRequired": "Paste the bot reply before continuing.",
+            "loginRequired": "Sign in to the ClawPilot control plane before claiming {agentName}.",
+            "passwordChangeRequired": "This account must change its password before {agentName} can be claimed.",
+            "sessionExpired": "The session expired. Sign in again before claiming {agentName}.",
+            "sessionPasswordChangeRequired": "The account status changed. Update the password before claiming {agentName}."
+          },
+          "success": {
+            "badge": "Setup complete",
+            "title": "Configuration complete",
+            "description": "Go chat with {agentName}",
+            "openChat": "Continue in Feishu",
+            "close": "Close"
+          }
+        }
+      },
+      "claimMore": {
+        "cta": "Onboard new Agent",
+        "title": "Onboard new Agent",
+        "targetLabel": "Incoming Agent",
+        "targetValue": "{agentName} ({agentId})",
+        "targetHint": "After the flow completes, the new Agent will be added to the current list automatically.",
+        "fallbackAgentName": "the next Agent"
+      }
+    },
+    "tasks": {
+      "title": "Task Center",
+      "subtitle": "Track task flow, status changes, and execution cadence."
+    },
+    "training": {
+      "title": "Training Center",
+      "subtitle": "Review training runs, results, and evaluation status."
+    },
+    "lobsterToolkit": {
+      "title": "Skills Toolkit",
+      "subtitle": "Browse dispatch status by library and source. Heavier details live in a secondary modal.",
+      "tabs": {
+        "skill": "Skills",
+        "cli": "CLI",
+        "system": "System Presets",
+        "user": "Mine"
+      },
+      "searchPlaceholder": "Search title / slug / source",
+      "states": {
+        "loading": "Loading toolkit cards…",
+        "empty": "No toolkit cards match the current filters.",
+        "error": "Failed to load the toolkit"
+      },
+      "card": {
+        "targets": "Targets",
+        "shared": "Shared",
+        "agents": "Agents",
+        "newVersion": "New Version",
+        "latest": "Latest"
+      },
+      "detail": {
+        "brand": "Brand",
+        "dispatchAction": "Dispatch to selected targets",
+        "dispatchDescription": "Dispatch this skill into the shared scope or the selected agent workspace skills directory.",
+        "dispatchFailed": "Failed to dispatch the skill",
+        "dispatchLoadingAgents": "Loading agents…",
+        "dispatchTargetRequired": "Select at least one deployment target.",
+        "dispatchTitle": "Direct dispatch",
+        "dispatching": "Dispatching...",
+        "updateAction": "Update version",
+        "updateFailed": "Failed to update the version",
+        "title": "Toolkit Detail",
+        "close": "Close",
+        "provider": "Provider",
+        "scope": "Scope",
+        "remote": "Remote URL",
+        "targets": "Agents with this capability",
+        "checkedAt": "Last Checked",
+        "publishedAt": "Remote Updated",
+        "version": "Current Version",
+        "latestVersion": "New Version",
+        "notDeployed": "Not deployed yet",
+        "sharedScope": "Shared",
+        "agentScope": "Specific Agent",
+        "updating": "Updating...",
+        "viewSource": "View source"
+      }
+    },
+    "dataAnalysis": {
+      "title": "Data Analysis",
+      "subtitle": "Inspect the key control-plane metrics, seven-day activity trends, and task distribution.",
+      "tabs": {
+        "overview": "Overview",
+        "leaderboard": "Agent Score Ranking"
+      },
+      "notices": {
+        "partialData": "Some analytics data is temporarily unavailable. The page is showing a safe fallback state."
+      },
+      "emptyChart": "There is not enough data to render this chart yet.",
+      "sections": {
+        "activity": {
+          "title": "7-Day Activity Trend",
+          "description": "Track daily changes in new agents, tasks, and training runs."
+        },
+        "taskStatus": {
+          "title": "Task Status Distribution",
+          "description": "See how the task pool is currently distributed across workflow states."
+        },
+        "agentRuntime": {
+          "title": "Agent Runtime Status",
+          "description": "Review the overall runtime-state split across active agents."
+        },
+        "leaderboard": {
+          "title": "Top 6 by Points",
+          "description": "Compare the agents with the strongest current point totals."
+        }
+      },
+      "taskStatus": {
+        "todo": "Todo",
+        "doing": "Doing",
+        "review": "Review",
+        "done": "Done",
+        "rejected": "Rejected"
+      },
+      "runtime": {
+        "working": "Working",
+        "idle": "Idle",
+        "offline": "Offline",
+        "crashed": "Crashed"
+      }
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "subtitle": "Review the current agent ranking, top-three performance, and the broader lineup by points.",
+      "metrics": {
+        "activeAgents": "Active Agents",
+        "activeHint": "Current board",
+        "leaderPoints": "Leader Points",
+        "leaderHint": "Rank #1",
+        "topThree": "Top 3 Points",
+        "topThreeHint": "Combined"
+      },
+      "moreTitle": "More Rankings",
+      "moreDescription": "See agents ranked fourth and below.",
+      "emptyList": "Only top-three data is available right now. Total points: {totalPoints}.",
+      "emptyTopThree": "Not enough ranking data is available yet.",
+      "fallbackLeading": "Leading the current workload",
+      "fallbackWaiting": "Waiting for more work records",
+      "pointsLabel": "Points",
+      "podium": {
+        "first": "Champion",
+        "second": "Runner-up",
+        "third": "Third Place"
+      },
+      "topThree": {
+        "title": "TOP 3",
+        "subtitle": "Podium summary",
+        "totalLabel": "Total points",
+        "leaderLabel": "Current leader"
+      }
+    }
+  },
+  "agentSetup": {
+    "listSeparator": ", ",
+    "header": {
+      "kicker": "Local Onboarding Guide",
+      "title": "Connect an OpenClaw local node",
+      "subtitle": "Prepare a local node first, then connect it to the ClawPilot control plane. After that, workspace sync, file dispatching, and agent execution can attach to the local environment."
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "pending": "Pending"
+    },
+    "messages": {
+      "nodeOnline": "Node is online. Refreshing the page.",
+      "copied": "{label} copied"
+    },
+    "errors": {
+      "pollFailed": "Failed to poll node status",
+      "copyFailed": "Failed to copy {label}. Please copy it manually.",
+      "bootstrapUnavailable": "Bootstrap command is currently unavailable",
+      "generateFailed": "Failed to generate bootstrap command"
+    },
+    "fields": {
+      "nodeName": "Node name",
+      "rootPath": "Root path"
+    },
+    "steps": {
+      "info": {
+        "title": "Fill node info",
+        "description": "Enter a node name and the OpenClaw root path."
+      },
+      "execute": {
+        "title": "Run the command",
+        "description": "Copy the command and execute it on the target machine."
+      },
+      "wait": {
+        "title": "Wait for node online",
+        "description": "The page will poll status and refresh automatically."
+      }
+    },
+    "cta": {
+      "unavailable": "Unavailable",
+      "generating": "Generating...",
+      "ready": "Generate command",
+      "fillMore": "Complete required fields",
+      "unavailableHint": "Environment not ready",
+      "generatingHint": "Generating bootstrap command",
+      "readyHint": "Ready to generate a bootstrap command",
+      "missingHint": "{count} required fields remaining",
+      "unavailableDesc": "Resolve the current blockers first, then continue when bootstrap generation becomes available.",
+      "generatingDesc": "The system is creating the node and generating its command. It will switch to copy-ready automatically.",
+      "readyDesc": "Everything is ready. Click the button to generate an install command for this node.",
+      "missingDesc": "Complete these fields first: {fields}",
+      "processing": "Processing",
+      "clickable": "Ready to run",
+      "disabled": "Currently unavailable"
+    },
+    "promptEmpty": "No bootstrap prompt is available yet.",
+    "issues": {
+      "missingConfig": "OpenClaw config file was not detected",
+      "noNodes": "No nodes have been registered yet"
+    },
+    "waiting": {
+      "title": "Waiting for node online",
+      "status": "Node {nodeId} current status: {status}"
+    },
+    "summary": {
+      "title": "Connection summary",
+      "subtitle": "Confirm config, node count, and bootstrap readiness before continuing.",
+      "config": "Config",
+      "found": "Found",
+      "missing": "Missing",
+      "nodes": "Nodes",
+      "bootstrap": "Bootstrap",
+      "ready": "Ready",
+      "unavailable": "Unavailable",
+      "localAccess": "Local access",
+      "localWeb": "Local Web",
+      "localApi": "Local API health",
+      "localHealth": "Local health",
+      "localWebCheck": "Web",
+      "localApiCheck": "API",
+      "localWebCopyLabel": "Local Web URL",
+      "localApiCopyLabel": "Local API URL",
+      "publicAccess": "Public access",
+      "publicStatus": "Public status",
+      "publicReason": "Reason",
+      "publicProvider": "Exposure provider",
+      "publicUrl": "Public URL",
+      "publicUrlCopyLabel": "Public URL",
+      "providerQuick": "Quick Tunnel (temporary testing)",
+      "publicHint": "Run ./clawpilot expose quick if you need a temporary public URL.",
+      "notAvailable": "Unavailable",
+      "notGenerated": "Not generated",
+      "notConfigured": "Not configured",
+      "healthOk": "OK",
+      "healthFailed": "Failed",
+      "healthUnknown": "Unknown",
+      "publicStatuses": {
+        "notRequested": "Not requested",
+        "verified": "Verified",
+        "pending": "Verifying",
+        "unavailable": "Unavailable",
+        "disabled": "Disabled",
+        "unknown": "Unknown"
+      },
+      "blockers": "Current blockers",
+      "noBlockers": "No blockers detected. You can continue."
+    },
+    "prompt": {
+      "title": "Bootstrap Prompt",
+      "subtitle": "Use this prompt directly with the OpenClaw local deployment agent.",
+      "notice": "This prompt changes with environment state and is suitable for direct handoff to a local execution agent.",
+      "copyLabel": "Bootstrap Prompt",
+      "copy": "Copy Prompt"
+    },
+    "command": {
+      "title": "Current install command",
+      "titleFallback": "Generate install command",
+      "descriptionReady": "This is the latest command generated for the current node. Copy it and run it on the target machine.",
+      "descriptionUnavailable": "The environment does not currently meet bootstrap generation requirements, so no command can be shown yet.",
+      "descriptionDefault": "Fill in the node info below to generate an install command.",
+      "reset": "Regenerate",
+      "copyLabel": "Install command",
+      "unavailable": "No install command is available right now.",
+      "created": "Generated an install command for {name}. Current node status: {status}"
+    },
+    "form": {
+      "nodeName": "Node name",
+      "nodePlaceholder": "e.g. My local workstation",
+      "rootLabel": "OpenClaw root directory"
+    }
+  },
+  "skills": {
+    "errors": {
+      "readFailed": "Failed to load Skills list"
+    },
+    "import": {
+      "zip": {
+        "noFile": "Please choose a ZIP file first",
+        "success": "Imported {name}",
+        "failed": "Failed to import ZIP"
+      },
+      "github": {
+        "noUrl": "Please provide a GitHub URL",
+        "success": "Imported {name} from GitHub",
+        "failed": "GitHub import failed"
+      }
+    },
+    "delete": {
+      "success": "Deleted {name}",
+      "failed": "Delete failed"
+    },
+    "dialog": {
+      "eyebrow": "Skill Management",
+      "title": "Skills Attached to {agent}",
+      "description": "Only Skill folders under this agent's `skills` directory are shown. Click any card to open the workspace."
+    },
+    "actions": {
+      "uploadZip": "Upload ZIP",
+      "githubRepo": "GitHub Repo",
+      "closeDialog": "Close Skills dialog",
+      "cancel": "Cancel",
+      "startImport": "Start import",
+      "importing": "Importing...",
+      "deleting": "Deleting...",
+      "confirmDelete": "Confirm delete"
+    },
+    "states": {
+      "loading": "Loading Skills folder...",
+      "error": "Failed to load Skills list: {error}",
+      "empty": "No Skill folders found yet. Import one from a ZIP file or a GitHub repo."
+    },
+    "card": {
+      "symlink": "Symlink",
+      "unknownTarget": "Unknown target",
+      "openFiles": "Open files",
+      "menuAria": "More actions {name}",
+      "menuOpen": "Open workspace",
+      "menuDelete": "Delete Skill"
+    },
+    "zipDialog": {
+      "eyebrow": "Add Skill",
+      "title": "Import from ZIP",
+      "description": "Upload a Skill ZIP archive. It will be extracted to the agent's `skills` directory and the ZIP will be removed.",
+      "closeAria": "Close ZIP import dialog",
+      "fileLabel": "ZIP file",
+      "filePlaceholder": "Choose a .zip Skill package",
+      "rulePrefix": "Rule: only",
+      "ruleMiddle": " is supported. It will be extracted to",
+      "ruleSuffix": ", and only the extracted Skill folder will be kept."
+    },
+    "githubDialog": {
+      "eyebrow": "Add Skill",
+      "title": "Import from GitHub repo",
+      "description": "Supports public GitHub repository URLs, or `tree/...` subdirectory URLs.",
+      "closeAria": "Close GitHub import dialog",
+      "urlLabel": "GitHub URL",
+      "urlPlaceholder": "https://github.com/owner/repo/tree/main/skill",
+      "targetLabel": "Target folder name (optional)",
+      "targetPlaceholder": "Leave blank to infer"
+    },
+    "deleteDialog": {
+      "eyebrow": "Delete Skill",
+      "title": "Delete {name}?",
+      "descriptionPrefix": "This will delete the entire directory in the current agent workspace",
+      "descriptionSuffix": ". All files and subfolders will be removed and cannot be recovered.",
+      "closeAria": "Close delete confirmation dialog"
+    },
+    "workspace": {
+      "errors": {
+        "readFileFailed": "Failed to load Skill file",
+        "readDirFailed": "Failed to load Skill folder",
+        "saveFailed": "Failed to save Skill file"
+      },
+      "symlinkLabel": "Symlink → {target}",
+      "unknownTarget": "Unknown target",
+      "eyebrow": "Skill Workspace",
+      "description": "Browse the Skill directory on the left and preview or edit the current file on the right.",
+      "closeAria": "Close Skill workspace",
+      "treeTitle": "Directory tree",
+      "loadingDirectory": "Loading Skill directory...",
+      "filePlaceholder": "Select a Skill file",
+      "fileHint": "Click a file on the left to preview or edit it here.",
+      "preview": "Preview",
+      "edit": "Edit",
+      "saveAria": "Save Skill file",
+      "saving": "Saving",
+      "save": "Save",
+      "loadingFile": "Loading Skill file...",
+      "emptySelection": "No file selected yet. Choose a file from the directory tree."
+    }
+  },
+  "scheduledJobs": {
+    "errors": {
+      "readFailed": "Failed to load scheduled jobs",
+      "saveFailed": "Failed to save scheduled job",
+      "createFailed": "Failed to create scheduled job",
+      "exportFailed": "Failed to export Markdown"
+    },
+    "notices": {
+      "updated": "Updated {name}",
+      "created": "Created {name}",
+      "exported": "Exported {name}"
+    },
+    "dialog": {
+      "eyebrow": "Scheduled Jobs",
+      "title": "Scheduled jobs for {agent}",
+      "descriptionFocused": "In single-job edit mode, focus on one job and return to the overview after saving.",
+      "descriptionOverview": "Scan job status in the overview, then open a job to adjust schedule and content."
+    },
+    "actions": {
+      "export": "Export Markdown",
+      "exporting": "Exporting",
+      "new": "New scheduled job",
+      "close": "Close"
+    },
+    "states": {
+      "loading": "Loading scheduled jobs...",
+      "empty": "No scheduled jobs are available for this agent yet."
+    },
+    "summary": {
+      "title": "Job cards overview",
+      "description": "Each card shows key status info. Click to open the full editor."
+    },
+    "card": {
+      "unnamed": "Untitled job",
+      "noDescription": "No description provided",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "scheduleInfo": "Schedule",
+      "delivery": "Delivery",
+      "lastRun": "Last run",
+      "nextRun": "Next run",
+      "statusUnknown": "No status recorded",
+      "enterEdit": "Open editor"
+    },
+    "detail": {
+      "unnamed": "Untitled job",
+      "backToList": "Back to cards",
+      "disable": "Disable",
+      "enable": "Enable",
+      "saving": "Saving",
+      "save": "Save",
+      "nextRun": "Next run",
+      "lastRun": "Last run",
+      "lastStatus": "Last status",
+      "lastStatusEmpty": "No record",
+      "updatedAt": "Last updated"
+    },
+    "createDialog": {
+      "title": "Create scheduled job",
+      "description": "Set up an automated task for your Agent. Just fill in a name, frequency, and instructions to get started.",
+      "sectionTitle": "Job basics",
+      "sectionDescription": "After creation you'll return to the main dialog list.",
+      "enabled": "Enable after creation",
+      "disabled": "Keep disabled after creation",
+      "contentPlaceholder": "Tell the Agent what to do, e.g.:\n\"Summarize today's tasks and send a daily report to the group\"",
+      "cancel": "Cancel",
+      "creating": "Creating",
+      "submit": "Create and enable"
+    },
+    "export": {
+      "title": "{agent} scheduled jobs",
+      "overviewTitle": "Current job list",
+      "empty": "This agent has no scheduled jobs yet.",
+      "labels": {
+        "agentName": "Agent name",
+        "agentId": "Agent ID",
+        "agentRole": "Agent role",
+        "exportedAt": "Exported at",
+        "totalJobs": "Total scheduled jobs",
+        "jobId": "Job ID",
+        "enabledStatus": "Enabled status",
+        "scheduleKind": "Schedule type",
+        "scheduleSummary": "Schedule summary",
+        "cronExpr": "Cron expression",
+        "timezone": "Timezone",
+        "everyMs": "everyMs",
+        "everyMinutes": "everyMinutes",
+        "singleAt": "Single time",
+        "deliveryChannel": "Delivery channel",
+        "deliverySummary": "Delivery summary",
+        "templateKind": "Template type",
+        "bootstrapEnabled": "Initial sync",
+        "bootstrapStatus": "Sync status",
+        "bootstrapRoot": "Synced directory",
+        "bootstrapMessage": "Sync note",
+        "syncedFiles": "Synced files",
+        "payloadKind": "Payload type",
+        "contentField": "Content field",
+        "lastRun": "Last run",
+        "nextRun": "Next run",
+        "lastStatus": "Last status",
+        "updatedAt": "Last updated"
+      },
+      "values": {
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "bootstrapOn": "On",
+        "bootstrapOff": "Off",
+        "internal": "internal",
+        "unnamed": "Untitled job"
+      },
+      "sections": {
+        "description": "Description",
+        "content": "Job content",
+        "templateBody": "Template body"
+      }
+    }
+  },
+  "workspaceInspector": {
+    "kinds": {
+      "directory": "Directory",
+      "markdown": "Markdown",
+      "image": "Image",
+      "video": "Video",
+      "audio": "Audio",
+      "pdf": "PDF",
+      "document": "Document",
+      "archive": "Archive",
+      "code": "Code",
+      "text": "Text",
+      "file": "File"
+    },
+    "previewKinds": {
+      "unknown": "Unknown",
+      "text": "Text",
+      "code": "Code",
+      "image": "Image",
+      "video": "Video",
+      "audio": "Audio",
+      "pdf": "PDF",
+      "markdown": "Markdown",
+      "document": "Document",
+      "archive": "Archive",
+      "file": "File"
+    },
+    "aria": {
+      "collapse": "Collapse {name}",
+      "expand": "Expand {name}"
+    },
+    "eyebrow": "Workspace Check",
+    "title": "{agent} Workspace",
+    "description": "Browse the expandable directory tree on the left, and review details or edit text files on the right.",
+    "actions": {
+      "backToAgents": "Back to Agents",
+      "refresh": "Refresh",
+      "refreshing": "Refreshing",
+      "preview": "Preview",
+      "edit": "Edit",
+      "downloadOriginal": "Download original",
+      "reload": "Reload",
+      "reloading": "Reloading",
+      "save": "Save changes",
+      "saving": "Saving",
+      "sendToAgent": "Send to agent",
+      "close": "Close",
+      "cancel": "Cancel"
+    },
+    "stats": {
+      "currentDirectory": "Current directory · {name}",
+      "totalItems": "Total {count} items",
+      "loadedDirectories": "Loaded {count} directories"
+    },
+    "search": {
+      "placeholder": "Search file name or path",
+      "resultsHint": "Search results only include loaded nodes.",
+      "lazyHint": "Directories load on demand; expanding a folder fetches its children."
+    },
+    "states": {
+      "loadingDirectory": "Loading directory...",
+      "noMatches": "No matching files found for this filter."
+    },
+    "emptySelection": "Select a file from the left tree to view details; code, image, video, PDF, and Office files will open in the right previewer.",
+    "details": {
+      "title": "File details",
+      "unsaved": "Unsaved changes",
+      "editable": "Editable",
+      "readonly": "Read-only"
+    },
+    "preview": {
+      "unpreviewable": "This file is not textual. Only file metadata is available; online preview or editing is not supported.",
+      "unpreviewableHint": "You can still dispatch the original file to another agent for processing.",
+      "truncatedWarning": "The file is large; only the first 256KB is shown. Saving writes only the content in your editor.",
+      "codePreview": "Code preview",
+      "textPreview": "Text preview",
+      "editModeHint": "You're in edit mode; changes can be saved to the remote workspace.",
+      "previewModeHint": "You're in preview mode; switch to edit to make changes.",
+      "autoPreviewHint": "This file is shown in the appropriate previewer."
+    },
+    "errors": {
+      "targetNotAuthorized": "The target agent has not completed user authorization yet, so a human-identity chat cannot be started."
+    },
+    "notices": {
+      "authCompleted": "User authorization completed for {agent}. You can send files and instructions now.",
+      "saved": "Saved {name}",
+      "sent": "Sent {file} and instructions to {agent}",
+      "popupBlocked": "Authorization link is ready, but the browser blocked the popup. Allow popups and try again.",
+      "authOpened": "Opened the Feishu authorization page for {agent}. This view will refresh automatically after completion.",
+      "authConnected": "Connected user chat authorization for {agent}."
+    },
+    "collaboration": {
+      "authMessageUnavailable": "User credential delivery is not available yet.",
+      "eyebrow": "Dispatch Collaboration",
+      "heading": "Send to an agent Feishu chat",
+      "description": "The backend sends a text instruction and attaches the current file.",
+      "currentFileLabel": "Current file",
+      "targetsLabel": "Available agents",
+      "loadingTargets": "Loading agent list...",
+      "status": {
+        "authorized": "User chat connected",
+        "pending": "Authorization pending",
+        "missingCallback": "Public callback missing",
+        "comingSoon": "Coming soon"
+      },
+      "currentSelection": "Selected",
+      "authorizedUser": "Connected user: {user}",
+      "currentUser": "Current user",
+      "instructionLabel": "Instruction",
+      "instructionPlaceholder": "Example: refine the structure, unify the tone, and reply with suggestions based on this file.",
+      "payloadTitle": "Payload:",
+      "payloadLine1": "1. Text message: your instruction",
+      "payloadLine2": "2. File attachment: current file",
+      "payloadLine3": "3. Only HR supports human-identity chat for now; other agents will be added in batches.",
+      "currentTarget": "Current target: {name}",
+      "selectTarget": "Select a target agent first",
+      "startingAuth": "Opening authorization...",
+      "startAuth": "Connect HR authorization",
+      "sending": "Sending...",
+      "sendToChat": "Send to user chat"
+    }
+  },
+  "workspacePreview": {
+    "loadingPdf": "Loading PDF preview...",
+    "loadingMedia": "Loading media player...",
+    "text": {
+      "empty": "This text file has no content to display."
+    },
+    "actions": {
+      "zoom": "Zoom",
+      "downloadOriginal": "Download original",
+      "openNewWindow": "Open in new window"
+    },
+    "office": {
+      "noConverterTitle": "No PDF converter available for Office files",
+      "noConverterDesc": "The server needs `soffice/libreoffice` to convert documents to PDF for in-browser preview. You can still download the original or dispatch it to another agent."
+    },
+    "unsupported": "No built-in previewer for this file yet. Supported: images, video, audio, code, text, PDF, and Office-to-PDF previews.",
+    "code": {
+      "loading": "Loading syntax highlighting...",
+      "error": "Syntax highlighting failed, falling back to plain text: {error}"
+    },
+    "pdf": {
+      "title": "PDF preview",
+      "prev": "Previous",
+      "next": "Next",
+      "pageStatus": "Page {current} of {total}",
+      "loading": "Loading PDF...",
+      "error": "PDF preview failed: {error}",
+      "openFailed": "Unable to open file"
+    }
+  },
+  "nodeConnectivity": {
+    "title": "Connection Settings",
+    "description": "Connect local nodes to the control plane so workspaces and agent data can sync with them.",
+    "stats": {
+      "countLabel": "Current nodes"
+    },
+    "actions": {
+      "createNode": "Add node",
+      "hideCreate": "Hide create form",
+      "refresh": "Refresh status",
+      "refreshing": "Refreshing...",
+      "rotateToken": "Rotate token",
+      "rotating": "Rotating...",
+      "copyCommand": "Copy install command",
+      "creating": "Creating..."
+    },
+    "copy": {
+      "commandLabel": "Install command",
+      "success": "{label} copied",
+      "failed": "Failed to copy {label}. Please copy it manually."
+    },
+    "create": {
+      "title": "Add node",
+      "description": "This page keeps the advanced entry. You can also use the simplified onboarding guide from the home page.",
+      "nameLabel": "Node name",
+      "namePlaceholder": "e.g. My local workstation",
+      "typeLabel": "Node type",
+      "rootLabel": "OpenClaw root directory",
+      "hint": "The node will be selected after creation. For a new command, copy it or rotate the token."
+    },
+    "empty": {
+      "title": "No nodes yet",
+      "description": "Click “Add node” above to register one, or use the simplified onboarding guide on the home page."
+    },
+    "list": {
+      "title": "Existing nodes",
+      "description": "Use the left panel to switch nodes; the right panel shows full details."
+    },
+    "tokenSuffix": "Token suffix {suffix}",
+    "fields": {
+      "status": "Status",
+      "hostname": "Hostname",
+      "platform": "Platform",
+      "lastHeartbeat": "Last heartbeat",
+      "expectedRoot": "Expected OpenClaw root",
+      "reportedRoot": "Reported root",
+      "connectorVersion": "Connector version"
+    },
+    "placeholders": {
+      "notConnected": "Not connected",
+      "notReported": "Not reported"
+    },
+    "sections": {
+      "directories": "Directory info",
+      "command": "Current install command"
+    },
+    "command": {
+      "hint": "This always targets the selected node. If you need a fresh command, rotate the token above.",
+      "ready": "This is the latest install command for the selected node. Copy it to the target machine and run it.",
+      "pending": "No new command for this node yet. After rotating the token, the latest command will appear here.",
+      "unavailable": "This environment does not support generating an install command for this node."
+    },
+    "status": {
+      "online": "Online",
+      "pending": "Pending",
+      "offline": "Offline"
+    },
+    "nodeTypes": {
+      "linux": "Linux host",
+      "macos": "macOS host"
+    },
+    "errors": {
+      "refreshFailed": "Failed to refresh node status",
+      "createFailed": "Failed to create node",
+      "rotateFailed": "Failed to rotate token"
+    }
+  },
+  "login": {
+    "title": "Admin login",
+    "description": "Sign in with a local account to manage ClawPilot.",
+    "form": {
+      "username": "Username",
+      "password": "Password"
+    },
+    "actions": {
+      "login": "Sign in",
+      "loggingIn": "Signing in..."
+    },
+    "errors": {
+      "loginFailed": "Login failed",
+      "bootstrapFailed": "Failed to load bootstrap account"
+    },
+    "bootstrap": {
+      "title": "Bootstrap admin",
+      "description": "After initialization you can retrieve the default admin account and temp password.",
+      "revealed": "Account: {username}, temp password: {password}",
+      "alreadyRevealed": "Account: {username}. The temporary password was already revealed once at {revealedAt} and cannot be shown again.",
+      "hint": "Click the button below to reveal the bootstrap credentials (shown once).",
+      "unknownTime": "an earlier time",
+      "loading": "Loading...",
+      "action": "Reveal bootstrap credentials"
+    }
+  },
+  "password": {
+    "title": "Change password",
+    "description": "Please replace the temporary password after your first login.",
+    "form": {
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password"
+    },
+    "actions": {
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "submit": "Update password",
+      "submitting": "Submitting..."
+    },
+    "errors": {
+      "currentRequired": "Please enter your current password",
+      "currentInvalid": "The current password is incorrect",
+      "mismatch": "The new passwords do not match",
+      "minLength": "The new password must be at least {min} characters",
+      "updateFailed": "Failed to update password"
+    },
+    "notices": {
+      "updated": "Password updated. Please re-enter employee management."
+    }
+  },
+  "accounts": {
+    "title": "Employee Management",
+    "subtitle": "Start from the employee list, then manage account lifecycle and access person by person.",
+    "rolePlaceholder": "Select a role",
+    "states": {
+      "requireLogin": "Please sign in before accessing employee management.",
+      "loading": "Loading account data...",
+      "loadingHint": "Please wait."
+    },
+    "actions": {
+      "logout": "Sign out",
+      "goLogin": "Go to login",
+      "processing": "Processing...",
+      "addEmployee": "Add Employee",
+      "assignAccess": "Assign Access",
+      "saveAccess": "Save Access",
+      "disable": "Disable",
+      "enable": "Enable",
+      "resetPassword": "Reset password",
+      "forceLogout": "Force logout",
+      "delete": "Delete"
+    },
+    "errors": {
+      "loadFailed": "Failed to load account data",
+      "inviteFailed": "Invite failed",
+      "actionFailed": "Action failed",
+      "updateRoleFailed": "Failed to update role",
+      "savePermissionsFailed": "Failed to save permissions",
+      "accessLoadFailed": "Failed to load employee access",
+      "accessSaveFailed": "Failed to save employee access"
+    },
+    "notices": {
+      "created": "Created account {username}, temp password: {password}",
+      "resetPassword": "Temp password for {username}: {password}",
+      "accessUpdated": "Updated access settings for {username}."
+    },
+    "invite": {
+      "title": "Add employee",
+      "description": "Create an employee account and generate a temporary password for first login.",
+      "form": {
+        "username": "Username",
+        "displayName": "Display name",
+        "email": "Email (optional)",
+        "role": "Role"
+      },
+      "actions": {
+        "submit": "Create employee and generate temp password"
+      }
+    },
+    "list": {
+      "title": "Employee list",
+      "description": "Includes the administrator account and supports direct lifecycle and access actions.",
+      "table": {
+        "account": "Employee",
+        "role": "Role",
+        "status": "Status",
+        "lastLogin": "Last login",
+        "actions": "Actions"
+      }
+    },
+    "status": {
+      "active": "Active",
+      "disabled": "Disabled"
+    },
+    "access": {
+      "title": "Assign Access: {name}",
+      "description": "Choose a role first, then add only the extra permissions outside that role.",
+      "loading": "Loading employee access settings...",
+      "roleLabel": "Role",
+      "summaryTitle": "Access summary",
+      "summaryRole": "Role inherited permissions: {count}",
+      "summaryManual": "Manual extra permissions: {count}",
+      "summaryEffective": "Effective permissions: {count}",
+      "inheritedTitle": "Role inherited permissions",
+      "inheritedHint": "These permissions are already provided by the selected role and stay locked.",
+      "manualTitle": "Manual extra permissions",
+      "manualHint": "Only permissions outside the selected role can be changed here.",
+      "emptyInherited": "The selected role does not inherit any permissions yet.",
+      "emptyManual": "There are no additional permissions left to assign manually.",
+      "roleLocked": "Role inherited"
+    },
+    "audit": {
+      "title": "Audit log",
+      "description": "Latest 200 system audit entries.",
+      "table": {
+        "time": "Time",
+        "action": "Action",
+        "target": "Target",
+        "detail": "Detail"
+      }
+    }
+  },
+  "rolesPage": {
+    "title": "Role Management",
+    "subtitle": "Maintain role templates, role permissions, and their impact scope.",
+    "states": {
+      "requireLogin": "Please sign in before accessing role management.",
+      "loading": "Loading role data...",
+      "loadingHint": "Please wait."
+    },
+    "actions": {
+      "addRole": "Add Role",
+      "editRole": "Edit Access",
+      "deleteRole": "Delete Role"
+    },
+    "errors": {
+      "loadFailed": "Failed to load role data",
+      "saveFailed": "Failed to save role",
+      "deleteFailed": "Failed to delete role"
+    },
+    "notices": {
+      "created": "Created role: {name}",
+      "updated": "Updated role: {name}",
+      "deleted": "Deleted role: {name}"
+    },
+    "types": {
+      "system": "System role",
+      "custom": "Custom role"
+    },
+    "list": {
+      "title": "Role list",
+      "description": "Review role templates, permission scale, and binding counts in one place.",
+      "table": {
+        "role": "Role",
+        "type": "Type",
+        "permissionCount": "Permissions",
+        "memberCount": "Members",
+        "actions": "Actions"
+      }
+    },
+    "editor": {
+      "createTitle": "Add role",
+      "editTitle": "Edit role: {name}",
+      "description": "Maintain the role name, description, and role-level permissions.",
+      "impactHint": "This role is currently bound to {count} employees. Saving will immediately affect their inherited permissions.",
+      "permissionsTitle": "Role permissions",
+      "permissionsHint": "This section edits the role template itself.",
+      "form": {
+        "name": "Role name",
+        "description": "Role description"
+      }
+    }
+  },
+  "multiAgent": {
+    "listSeparator": ", ",
+    "header": {
+      "title": "Multi-agent setup",
+      "subtitle": "Pick the onboarding owner first, then continue in the dialogs."
+    },
+    "states": {
+      "loadingOptions": "Loading available agents and group options..."
+    },
+    "owners": {
+      "title": "Owner card wall",
+      "columnHint": "6 per row"
+    },
+    "runs": {
+      "title": "Onboarding progress cards",
+      "ownerLabel": "Owner: {owner}"
+    },
+    "form": {
+      "ownerEyebrow": "Owner",
+      "title": "New agent form",
+      "agentIdLabel": "agent-id",
+      "agentIdPlaceholder": "security-research",
+      "agentNameLabel": "agent-name",
+      "agentNamePlaceholder": "Security Researcher",
+      "roleSummaryLabel": "role-summary",
+      "roleSummaryPlaceholder": "Owns security testing and risk alerts",
+      "coreWorkLabel": "core-work",
+      "coreWorkPlaceholder": "Core work {index}",
+      "addCoreWork": "Add core work",
+      "channelLabel": "Channel type",
+      "channelHint": "Other channels reserved",
+      "appIdLabel": "appId",
+      "appSecretLabel": "appSecret",
+      "operatorOpenIdLabel": "operator open_id",
+      "identityKeyLabel": "identity-key",
+      "feishuLoginHint": "Sign in to the Feishu Open Platform first"
+    },
+    "persona": {
+      "strategyLabel": "Persona strategy",
+      "templateOnly": "Template only",
+      "agentAssisted": "Agent assisted",
+      "docsLabel": "Persona docs",
+      "writerLabel": "Writer agent"
+    },
+    "groups": {
+      "title": "Auto-join groups",
+      "enable": "Enable",
+      "mentionRequired": "@Required",
+      "mentionOptional": "@Optional",
+      "manualChatId": "Manual chat_id",
+      "disabledHint": "Disable to skip group joining"
+    },
+    "execution": {
+      "title": "Execution strategy",
+      "restartGateway": "Restart gateway after execution"
+    },
+    "dryRun": {
+      "title": "Dry-run preview"
+    },
+    "progress": {
+      "eyebrow": "Step progress",
+      "ownerLabel": "Owner: {owner}",
+      "pendingRestart": "Gateway is not restarted yet; the @ routes may not be fully effective.",
+      "stepCount": "Progress {completed}/{total}"
+    },
+    "actions": {
+      "refresh": "Refresh",
+      "creating": "Creating...",
+      "startAutoCreate": "Start auto-create",
+      "openFeishuChat": "Open Feishu chat now",
+      "cancel": "Cancel",
+      "running": "Running...",
+      "runDryRun": "Run dry-run",
+      "onboarding": "Onboarding...",
+      "start": "Start onboarding",
+      "closeLater": "Close and resume later",
+      "resume": "Resume"
+    },
+    "errors": {
+      "loadFailed": "Failed to load",
+      "refreshFailed": "Refresh failed",
+      "dryRunFailed": "Dry-run failed",
+      "missingFields": "Please fill: {fields}",
+      "noOwner": "No owner agent selected",
+      "feishuLoginRequired": "Feishu login not detected. Sign in to the Feishu Open Platform and retry.",
+      "dependencyMissing": "UI automation dependency missing",
+      "autoCreateFailed": "Auto-create failed",
+      "startFailed": "Start failed",
+      "resumeFailed": "Resume failed"
+    },
+    "notices": {
+      "autoCreateStarting": "Credentials fetched. Starting onboarding...",
+      "autoCreateCompleted": "Auto-create completed and agent list refreshed"
+    },
+    "autoCreate": {
+      "appDescription": "The first crayfish, managing all business lines",
+      "menuName": "/status Status"
+    }
+  },
+  "rescueCenter": {
+    "title": "Rescue Center",
+    "subtitle": "Keep Codex thread topics on the left and continue the live conversation on the right, locked to `~/.openclaw`.",
+    "shellBadge": "Rescue Center Workbench",
+    "loading": "Connecting to the local Codex rescue bridge…",
+    "newThread": "New Thread",
+    "resumeThread": "Resume",
+    "resetThreads": "Reset Ledger",
+    "refresh": "Refresh",
+    "threadListTitle": "Thread Rail",
+    "threadListHint": "Rescue topics stay pinned on the left rail.",
+    "threadListEmpty": "No rescue thread yet. Start a new thread and send the issue directly to the local Codex runtime.",
+    "threadUntitled": "New Rescue Thread",
+    "threadEmpty": "Waiting for the first context message",
+    "statusTile": {
+      "title": "Runtime Status",
+      "ready": "Ready",
+      "blocked": "Blocked",
+      "codex": "Codex",
+      "auth": "Auth",
+      "root": "Locked Root",
+      "threads": "Threads",
+      "authLoggedIn": "Logged in",
+      "authMissing": "Missing",
+      "authUnknown": "Unknown"
+    },
+    "guidance": {
+      "title": "Install / Login Guide",
+      "install": "Install",
+      "login": "Login",
+      "status": "Status",
+      "root": "Locked Root",
+      "docs": "CLI Docs",
+      "authDocs": "Auth Docs"
+    },
+    "bootstrapError": {
+      "eyebrow": "Bootstrap Error",
+      "title": "Rescue Center API not ready",
+      "description": "The page could not load rescue bootstrap data. This usually does not mean the Codex CLI is missing. More often the backend on port 8088 has not loaded the latest rescue-center routes yet, or the endpoint is temporarily unreachable.",
+      "messageLabel": "Response",
+      "restartHint": "Restart the backend on port 8088, then refresh this page.",
+      "panelTitle": "Debug Info",
+      "endpointLabel": "Bootstrap endpoint",
+      "backendLabel": "Backend base",
+      "rootLabel": "Locked workdir",
+      "routeMissing": "The rescue-center backend routes are not loaded. Restart the backend on port 8088.",
+      "backendUnavailable": "The rescue-center backend is temporarily unavailable. Check that the service on port 8088 is running."
+    },
+    "canvas": {
+      "transcriptLabel": "Conversation Canvas",
+      "emptyEyebrow": "Start Rescue",
+      "emptyTitle": "Start a local rescue thread",
+      "emptyDescription": "Every thread stays locked to `~/.openclaw`. Create a rescue thread first, or send the first prompt directly from the dock below.",
+      "threadId": "Thread ID",
+      "lastReply": "Last reply",
+      "noReplyYet": "No reply yet"
+    },
+    "composer": {
+      "placeholder": "Send logs, deployment failures, or fix goals directly to the local Codex bridge…",
+      "hintReady": "Messages are routed through the backend bridge into the local codex app-server and locked to `~/.openclaw`.",
+      "hintBlocked": "The rescue bridge is currently blocked by environment prerequisites.",
+      "send": "Send",
+      "sending": "Sending...",
+      "restart": "Restart Thread"
+    },
+    "status": {
+      "active": "active",
+      "idle": "idle",
+      "failed": "failed",
+      "blocked": "blocked",
+      "archived": "archived"
+    },
+    "runtime": {
+      "idle": "Runtime stable",
+      "awaitingEvents": "Waiting for Codex turn events to settle",
+      "recovering": "Rebuilding the bridge and recovering the thread",
+      "recovered": "Thread recovered automatically and is ready to continue",
+      "failed": "Runtime failed",
+      "blocked": "Runtime blocked",
+      "lastEvent": "Last event",
+      "turnId": "Current turn",
+      "freshTransport": "This page reattached to a fresh local app-server transport",
+      "autoRecovered": "This conversation turn used automatic recovery"
+    },
+    "messages": {
+      "user": "User",
+      "assistant": "Codex",
+      "system": "System"
+    },
+    "advanced": {
+      "title": "Advanced Mode",
+      "transport": "Client Transport",
+      "budget": "Performance Budgets",
+      "latency": "Recent Latencies",
+      "cache": "Cache Stats",
+      "empty": "No runtime diagnostics have been recorded yet."
+    }
+  },
+  "common": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "close": "Close",
+    "copy": "Copy",
+    "copyPath": "Copy path",
+    "none": "None",
+    "notFound": "Not found",
+    "unknown": "Unknown",
+    "placeholder": "--",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing",
+    "save": "Save",
+    "saving": "Saving",
+    "submitting": "Submitting",
+    "notRecorded": "Not recorded",
+    "unknownTime": "Unknown time",
+    "clearAll": "Clear all",
+    "platforms": {
+      "feishu": "Feishu",
+      "openclaw": "OpenClaw",
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "weixin": "WeChat",
+      "unknown": "Unknown"
+    }
+  },
+  "api": {
+    "requestFailed": "Request failed",
+    "requestInvalid": "Invalid request parameters. Please check your input.",
+    "unreachable": "Unable to reach API: {url} ({reason})",
+    "exportPackageFailed": "Failed to export package"
+  },
+  "time": {
+    "units": {
+      "second": "second",
+      "minute": "minute",
+      "hour": "hour",
+      "day": "day",
+      "month": "month",
+      "year": "year"
+    }
+  },
+  "schedule": {
+    "everyInterval": "Every {value} {unit}",
+    "singleAt": "One-time · {time}",
+    "single": "One-time",
+    "cron": "Cron expression",
+    "delivery": {
+      "internal": "Internal delivery"
+    },
+    "deliveryModes": {
+      "feishu": {
+        "loopAt": "Group loop @",
+        "fixedTopic": "Fixed topic",
+        "privateMessage": "Direct message"
+      },
+      "openclaw": {
+        "notice": "Workspace notice"
+      },
+      "telegram": {
+        "privateMessage": "Direct message"
+      },
+      "internal": {
+        "turn": "Agent internal"
+      }
+    }
+  },
+  "scheduleEditor": {
+    "modes": {
+      "interval": "Fixed interval",
+      "daily": "Daily",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "once": "One-time",
+      "cron": "Custom",
+      "default": "Schedule"
+    },
+    "errors": {
+      "nameRequired": "Please enter a job name",
+      "contentRequired": "Please enter task instructions",
+      "invalidTime": "Please enter a valid time, e.g. 09:30",
+      "dayRange": "{label} must be between 1 and 31",
+      "monthRange": "Month must be between 1 and 12",
+      "monthDayInvalid": "Invalid month/day combination",
+      "intervalInvalid": "Please enter a valid interval",
+      "onceRequired": "Please select a run time",
+      "cronRequired": "Please enter a Cron expression"
+    },
+    "labels": {
+      "executeTime": "How often to run",
+      "every": "Every",
+      "dailyHint": "Run automatically at the specified time each day",
+      "monthlyDay": "Day of month",
+      "yearlyDay": "Day of year",
+      "executeAt": "Run time",
+      "month": "Month",
+      "day": "Day",
+      "onceTime": "Select run time",
+      "cronHint": "Use a Cron expression for complex scheduling rules"
+    },
+    "placeholders": {
+      "cron": "0 9 * * 1-5"
+    },
+    "fields": {
+      "name": "Task name",
+      "namePlaceholder": "e.g. Daily reminder",
+      "description": "Notes (optional)",
+      "descriptionPlaceholder": "Briefly describe the purpose of this task"
+    },
+    "content": {
+      "title": "Task instructions"
+    }
+  },
+  "weixinBridge": {
+    "title": "WeChat Bridge",
+    "description": "Start the Bridge to handle WeChat messages through a dedicated process with full text and media support. The OpenClaw WeChat plugin will be paused automatically to avoid conflicts.",
+    "status": {
+      "running": "Running · {uptime}",
+      "stopped": "Stopped"
+    },
+    "actions": {
+      "start": "Start",
+      "starting": "Starting…",
+      "stop": "Stop",
+      "stopping": "Stopping…"
+    },
+    "errors": {
+      "startFailed": "Failed to start WeChat Bridge",
+      "stopFailed": "Failed to stop WeChat Bridge"
+    }
+  },
+  "deliveryEditor": {
+    "channels": {
+      "internal": {
+        "label": "Internal only",
+        "description": "Agent handles the task internally, no external messages"
+      },
+      "feishu": {
+        "label": "Feishu",
+        "description": "Send results to Feishu DMs or groups"
+      },
+      "openclaw": {
+        "label": "OpenClaw",
+        "description": "Send to OpenClaw workspace notifications"
+      },
+      "telegram": {
+        "label": "Telegram",
+        "description": "Send to Telegram conversations"
+      },
+      "weixin": {
+        "label": "WeChat",
+        "description": "Send to WeChat DMs (requires active session)"
+      }
+    },
+    "feishuModes": {
+      "private": {
+        "label": "Direct message",
+        "description": "Send directly to a specific Feishu user"
+      },
+      "loop": {
+        "label": "Group message",
+        "description": "Send to a group and automatically @ specified members"
+      },
+      "fixed": {
+        "label": "Fixed topic",
+        "description": "Reply under a specific topic thread"
+      }
+    },
+    "openclawModes": {
+      "workspaceNotice": "Workspace notice"
+    },
+    "telegramModes": {
+      "private": "Direct message"
+    },
+    "weixinModes": {
+      "private": "Direct message"
+    },
+    "bootstrapScopes": {
+      "auto": "Auto",
+      "local": "Local",
+      "remote": "Remote"
+    },
+    "templateKinds": {
+      "plainText": "Plain text",
+      "feishuCard": "Feishu card"
+    },
+    "templateAccents": {
+      "blue": "Blue",
+      "green": "Green",
+      "orange": "Orange",
+      "red": "Red",
+      "slate": "Slate"
+    },
+    "defaults": {
+      "footer": "Synced automatically by ClawPilot"
+    },
+    "notices": {
+      "openclaw": "This version syncs OpenClaw delivery config and template skeleton to .openclaw. Execution hooks will be wired in the next iteration.",
+      "telegram": "This version stores Telegram delivery config and template skeleton in the scheduled job model. Sending will be wired later.",
+      "weixin": "WeChat channel currently supports text-only delivery. Media messages will be supported in Phase 2.",
+      "weixinContextToken": "WeChat delivery requires the user to send a message first to establish a session. Otherwise, messages cannot be delivered."
+    },
+    "errors": {
+      "feishuPrivateReceiveId": "Direct messages require a Feishu user ID.",
+      "feishuGroupChatId": "Group messages require a group ID.",
+      "feishuFixedTopicRootId": "Fixed topics require a topic root message ID."
+    },
+    "preview": {
+      "defaultTitle": "Message title",
+      "defaultSummary": "Card summary",
+      "defaultBody": "Preview of Feishu card body.",
+      "defaultFooter": "Synced automatically by ClawPilot",
+      "plainTitle": "Text message preview",
+      "cardTitle": "Feishu card preview",
+      "modes": {
+        "private": "Direct",
+        "fixed": "Fixed topic",
+        "loop": "Group loop"
+      },
+      "senderLabel": "ClawPilot / Feishu Delivery"
+    },
+    "labels": {
+      "channel": "Send results to",
+      "feishuMode": "Feishu delivery method",
+      "openclawMode": "OpenClaw method",
+      "telegramMode": "Telegram method",
+      "weixinMode": "WeChat method"
+    },
+    "fields": {
+      "receiveId": "Feishu user ID",
+      "receiveIdType": "ID type",
+      "chatId": "Group ID",
+      "mentions": "Members to @ (comma-separated)",
+      "mentionsHint": "Topic binding is managed automatically by the system.",
+      "rootMessageId": "Topic root message ID",
+      "rootMessageHint": "Used to bind to a specific topic. Automatically recorded after first sync."
+    },
+    "bootstrap": {
+      "title": "Auto sync config",
+      "description": "Automatically sync config files on save to keep all systems in sync.",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "statusLabel": "Status: ",
+      "syncedRootLabel": "Synced root: ",
+      "filesLabel": "Files: "
+    },
+    "template": {
+      "title": "Message style",
+      "description": "Customize the appearance and structure of the message card",
+      "fields": {
+        "title": "Title",
+        "summary": "Summary",
+        "body": "Body content",
+        "footer": "Footer note",
+        "accent": "Theme color"
+      },
+      "placeholders": {
+        "title": "e.g. Daily reminder",
+        "summary": "One line summarizing the key point",
+        "body": "Main content of the message, supports multiple lines",
+        "footer": "e.g. Synced automatically by ClawPilot"
+      },
+      "showSender": "Show source label",
+      "hideSender": "Hide source label",
+      "guidance": "Tip: Keep titles concise, summaries to one line, and body to 3 key points"
+    }
+  },
+  "language": {
+    "title": "System Language"
+  },
+  "activity": {
+    "header": {
+      "kicker": "Activity Timeline",
+      "title": "{name} Recent Activity",
+      "subtitle": "Review user, agent, tool, and system events in chronological order."
+    },
+    "filters": {
+      "all": "All",
+      "user": "User",
+      "assistant": "Agent",
+      "scheduledJob": "Scheduled jobs",
+      "tool": "Tool",
+      "system": "System"
+    },
+    "searchPlaceholder": "Search title, scheduled job, detail, actor, or time",
+    "loading": "Loading activity log...",
+    "empty": "No activity items match the current filters.",
+    "detailEmpty": "No detail was recorded for this item.",
+    "errors": {
+      "loadFailed": "Failed to load activity log: {error}"
+    },
+    "session": {
+      "recent": "Recent session",
+      "updated": "Last updated",
+      "file": "Session file"
+    }
+  },
+  "agentCard": {
+    "actions": {
+      "activity": "Open activity timeline",
+      "export": "Export portable package",
+      "remove": "Remove",
+      "schedules": "View scheduled jobs",
+      "skills": "View Skills",
+      "workspace": "Open workspace"
+    },
+    "lastActive": {
+      "daysAgo": "Active {count} days ago",
+      "hoursAgo": "Active {count} hours ago",
+      "inactive": "No recent activity",
+      "justNow": "Active just now",
+      "minutesAgo": "Active {count} minutes ago",
+      "monthsAgo": "Active {count} months ago"
+    },
+    "model": {
+      "currentLabel": "Current model",
+      "noRecord": "No record",
+      "pending": "Pending sync",
+      "recentLabel": "Recently used"
+    },
+    "presets": {
+      "bearLobster": "Bear Shrimp",
+      "catLobster": "Cat Shrimp",
+      "focus": "Focus preset",
+      "lobster": "Lobster",
+      "standard": "Standard preset",
+      "title": "View scene presets"
+    },
+    "roleFallback": "No role summary provided",
+    "roleLabel": "Role summary",
+    "removeDialog": {
+      "eyebrow": "Remove Agent",
+      "title": "Remove {name}",
+      "description": "This removes the Agent from the current list and openclaw config, but does not delete workspace files and keeps historical task or training records. Agent ID: {id}",
+      "close": "Close remove dialog",
+      "cancel": "Cancel",
+      "confirm": "Confirm remove",
+      "removing": "Removing",
+      "errors": {
+        "failed": "Failed to remove Agent"
+      }
+    },
+    "sceneAlt": "{name} scene preview",
+    "spend": {
+      "costWithTokens": "{cost} · {tokens}",
+      "label": "Spend: {value}"
+    },
+    "status": {
+      "crashed": "Crashed",
+      "idle": "Idle",
+      "offline": "Offline",
+      "working": "Working"
+    },
+    "tokens": "{count} tokens"
+  },
+  "agentConfig": {
+    "title": "Agent Configs",
+    "tabs": {
+      "profile": "Profile Planner",
+      "persona": "Persona Configs",
+      "multiAgent": "Agent Onboarding"
+    },
+    "offboarding": {
+      "open": "Agent Offboarding",
+      "eyebrow": "Agent Offboarding",
+      "title": "Choose an Agent to offboard",
+      "description": "Offboarding removes the Agent from the list and openclaw config, while keeping historical tasks and training records.",
+      "selected": "Pending offboarding",
+      "confirmTarget": "{name} will be offboarded",
+      "confirm": "Confirm Agent Offboarding",
+      "submitting": "Offboarding",
+      "empty": "There are no Agents available to offboard.",
+      "idLabel": "Agent ID: {id}",
+      "errors": {
+        "failed": "Failed to offboard Agent"
+      }
+    },
+    "persona": {
+      "title": "Persona and rule files",
+      "subtitle": "Review the same file across multiple agents and edit directly in cards or fullscreen mode."
+    },
+    "searchPlaceholder": "Search agent name, ID, or role",
+    "fileGroups": {
+      "official": "Official",
+      "team": "Team",
+      "custom": "Custom"
+    },
+    "addFile": "Add file",
+    "currentFile": "Current file: {name}",
+    "emptySearch": "No matching agents found.",
+    "fullscreen": "Fullscreen edit",
+    "fullscreenClose": "Close fullscreen",
+    "missingFile": {
+      "title": "{file} does not exist yet",
+      "subtitle": "Create an empty file for this agent first, then start editing.",
+      "create": "Create empty file",
+      "creating": "Creating"
+    },
+    "status": {
+      "dirty": "Unsaved",
+      "error": "Load failed",
+      "loading": "Loading",
+      "missing": "Missing",
+      "synced": "Synced"
+    },
+    "errors": {
+      "createFailed": "Failed to create file",
+      "readFailed": "Failed to load file",
+      "readFallback": "Try again later or verify that the agent workspace is available.",
+      "saveFailed": "Failed to save file"
+    },
+    "add": {
+      "title": "Add config file",
+      "subtitle": "Create a custom Markdown file",
+      "description": "The new file will appear in the custom group and can be created for each agent on demand.",
+      "fileName": "File name",
+      "filePlaceholder": "e.g. prompts/system.md",
+      "rulesPrefix": "Rule: file names must end with",
+      "rulesSuffix": "and may include subdirectories, for example",
+      "errors": {
+        "duplicate": "A file with the same name already exists",
+        "emptyName": "Enter a file name first",
+        "invalidName": "Invalid file name. Only letters, numbers, dots, underscores, dashes, and the .md suffix are supported."
+      }
+    },
+    "delete": {
+      "title": "Remove custom file",
+      "subtitle": "Remove {name}",
+      "description": "This only removes the entry from the frontend custom file list. It does not delete real files in agent workspaces.",
+      "confirm": "Confirm remove"
+    },
+    "deleteFile": "Remove {name}",
+    "profilePlanner": {
+      "title": "Profile Planner",
+      "subtitle": "Plan the positioning, responsibilities, persona and behavior standards for a single Agent.",
+      "step": {
+        "select": "Select Agent",
+        "configure": "Configure Profile",
+        "preview": "Preview & Adopt",
+        "done": "Done"
+      },
+      "selectAgent": "Select an Agent to plan its profile",
+      "form": {
+        "executorAgent": "Planner Agent",
+        "executorAgentHint": "Select an Agent to act as the profile planner — it will use OpenClaw dialogue to generate the profile plan",
+        "selectExecutor": "Select planner",
+        "executorPickerHint": "Click to select an Agent as the profile planner",
+        "agentName": "Job Title",
+        "roleSummary": "Role Summary",
+        "roleSummaryPlaceholder": "One-sentence description of the Agent's core responsibility",
+        "coreWork": "Core Work",
+        "coreWorkPlaceholder": "Describe a core work item",
+        "addCoreWork": "Add Core Work",
+        "minCoreWork": "At least {min} core work items required"
+      },
+      "actions": {
+        "previewExisting": "Preview Existing Profile",
+        "generate": "Generate Profile Plan",
+        "generating": "Generating...",
+        "applySelected": "Apply Selected Files",
+        "applying": "Applying...",
+        "selectAll": "Select All",
+        "deselectAll": "Deselect All",
+        "preview": "Preview",
+        "diff": "Diff",
+        "collapse": "Collapse",
+        "done": "Done",
+        "replan": "Re-plan",
+        "back": "Back",
+        "changeAgent": "Change Agent"
+      },
+      "result": {
+        "applied": "Applied",
+        "skipped": "Skipped",
+        "failed": "Failed"
+      },
+      "existingPreview": {
+        "title": "{agent} Existing Profile",
+        "empty": "This file has not been created yet",
+        "close": "Close"
+      },
+      "newFile": "New file",
+      "existingFile": "Existing file will be overwritten",
+      "noAgents": "No agents available",
+      "generateError": "Failed to generate profile plan, please retry"
+    }
+  },
+  "exportPackage": {
+    "actions": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "exportZip": "Export ZIP",
+      "exporting": "Exporting"
+    },
+    "docs": {
+      "description": "These documents are packed together to support migration and restore.",
+      "empty": "No documents are available for export.",
+      "title": "Documents"
+    },
+    "errors": {
+      "exportFailed": "Failed to export ZIP",
+      "readFailed": "Failed to load export preview"
+    },
+    "footer": {
+      "notice": "The exported ZIP contains only a snapshot of the previewed data and does not modify the current agent."
+    },
+    "header": {
+      "description": "Review documents, skills, scheduled jobs, and warnings before exporting an offline ZIP.",
+      "eyebrow": "Portable package preview",
+      "title": "Export {agent} Portable Package"
+    },
+    "jobs": {
+      "description": "Job configs and enabled states are included so they can be restored after migration.",
+      "empty": "No scheduled jobs are available.",
+      "statusDisabled": "Disabled",
+      "statusEnabled": "Enabled",
+      "title": "Scheduled Jobs"
+    },
+    "missing": {
+      "empty": "No required documents are missing.",
+      "title": "Missing Documents"
+    },
+    "notices": {
+      "downloadStarted": "Started downloading {name}"
+    },
+    "overview": {
+      "items": {
+        "docs": "docs/: role docs and reference files",
+        "manifest": "manifest.json: export manifest and restore entrypoint",
+        "restore": "restore/: restore notes and directory mapping",
+        "scheduledJobs": "scheduled-jobs/: scheduled job configs",
+        "skills": "skills/: mounted Skill snapshots"
+      },
+      "subtitle": "{name} · {count} files · estimated size {size}",
+      "title": "Package Contents"
+    },
+    "skills": {
+      "description": "Skills are grouped by directory with file count and total size.",
+      "empty": "No Skills need to be exported.",
+      "files": "{count} files · {size}",
+      "title": "Skills"
+    },
+    "states": {
+      "loadingPreview": "Generating export preview..."
+    },
+    "summary": {
+      "docs": {
+        "detail": "{count} required documents are missing",
+        "label": "Docs"
+      },
+      "jobs": {
+        "detail": "Includes both enabled and disabled job configs",
+        "label": "Jobs"
+      },
+      "risks": {
+        "detail": "Estimated archive size {size}",
+        "label": "Warnings"
+      },
+      "skills": {
+        "detail": "{count} Skill files in total",
+        "label": "Skills"
+      }
+    },
+    "warnings": {
+      "empty": "No warnings were detected.",
+      "title": "Warnings"
+    }
+  },
+  "scenePresets": {
+    "actions": {
+      "applying": "Applying",
+      "close": "Close",
+      "select": "Select",
+      "selected": "Selected"
+    },
+    "description": "Compare scene assets for different presets across all four runtime states and apply one to the current agent.",
+    "eyebrow": "Scene Presets",
+    "errors": {
+      "updateFailed": "Failed to apply scene preset"
+    },
+    "note": "Each preset below shows looping assets for the four runtime states.",
+    "stories": {
+      "bearLobster": "Bear Shrimp steadies the rear for Lobster.",
+      "catLobster": "Cat Shrimp keeps pace beside Lobster.",
+      "lobster": "Lobster anchors the desk and leads the crew."
+    },
+    "title": "Scene Preset Library"
+  },
+  "openclaw": {
+    "actions": {
+      "back": "Back",
+      "copyPathFailed": "Failed to copy path",
+      "copyPathSuccess": "Copied path: {path}",
+      "download": "Download original",
+      "jumpWorkspace": "Open {agentId} workspace",
+      "reload": "Reload file",
+      "reloadLoading": "Reloading"
+    },
+    "currentDirectoryLabel": "Current directory",
+    "detail": {
+      "currentPath": "Current path",
+      "emptySubtitle": "Choose a file from the middle list to inspect details and preview it here.",
+      "emptyTitle": "No file selected",
+      "fileTitle": "File details"
+    },
+    "emptyDirectory": "No matching items in this directory.",
+    "filter": {
+      "placeholder": "Filter by name or path"
+    },
+    "header": {
+      "currentDirectory": "Current directory: {name}",
+      "kicker": "System Library",
+      "subtitle": "Browse config, logs, skills, and workspace assets under {path} in read-only mode.",
+      "title": "System Library"
+    },
+    "kinds": {
+      "archive": "Archive",
+      "audio": "Audio",
+      "code": "Code",
+      "directory": "Directory",
+      "document": "Document",
+      "file": "File",
+      "image": "Image",
+      "pdf": "PDF",
+      "text": "Text",
+      "video": "Video"
+    },
+    "loadedCount": "Loaded {count} directories",
+    "previewOnly": "File info only",
+    "previewUnavailable": "This file cannot be previewed online. You can only inspect metadata or download the original.",
+    "previewable": "Previewable",
+    "readOnly": "Read-only browse",
+    "top": {
+      "agents": {
+        "description": "Inspect the agents directory and runtime-generated files.",
+        "label": "Agents"
+      },
+      "config": {
+        "description": "Core OpenClaw config files and environment settings.",
+        "label": "Config"
+      },
+      "cron": {
+        "description": "Scheduled-job and automation related directories.",
+        "label": "Cron"
+      },
+      "default": {
+        "description": "Other uncategorized content under the OpenClaw root.",
+        "label": "Other"
+      },
+      "delivery": {
+        "description": "Delivery queue for pending files and messages.",
+        "label": "Delivery Queue"
+      },
+      "logs": {
+        "description": "Runtime logs, troubleshooting traces, and execution output.",
+        "label": "Logs"
+      },
+      "root": {
+        "description": "Entry view for the full .openclaw root directory.",
+        "label": "Root"
+      },
+      "skills": {
+        "description": "Skills and agent extension directories.",
+        "label": "Skills"
+      },
+      "workspace": {
+        "description": "Agent workspaces and workspace-derived directories.",
+        "label": "Workspace"
+      }
+    },
+    "tree": {
+      "collapse": "Collapse {name}",
+      "expand": "Expand {name}",
+      "loadingRoot": "Loading root directory...",
+      "subtitle": "Expand system-library directories on demand",
+      "title": "Directory Tree"
+    }
+  },
+  "systemSettings": {
+    "currency": {
+      "cny": "Chinese Yuan CNY",
+      "currentSource": "Current source: {source}",
+      "description": "Switch cost display currency and review the USD/CNY rate source and timestamps.",
+      "lastCheck": "Last checked: {time}",
+      "lastUpdate": "Last updated",
+      "rateLabel": "USD/CNY rate",
+      "rateValue": "1 USD = {rate} CNY",
+      "refresh": "Refresh rate",
+      "title": "Currency and Exchange Rate",
+      "usd": "US Dollar USD"
+    },
+    "errors": {
+      "updateGatewayFailed": "Failed to save public access settings",
+      "applyGatewayFailed": "Failed to apply public access settings",
+      "readFailed": "Failed to load system settings",
+      "refreshRateFailed": "Failed to refresh exchange rate",
+      "updateCurrencyFailed": "Failed to update currency preference",
+      "updateStatusFailed": "Failed to update status aliases"
+    },
+    "gateway": {
+      "title": "Public Access",
+      "description": "Keep a public IP + port as the backup entry. Saving will immediately apply the config, and adding a domain enables the primary HTTPS entry.",
+      "backupEntryTitle": "Backup Entry",
+      "backupEntryDescription": "Keep IP + port access available for bootstrap, debugging, and fallback.",
+      "primaryEntryTitle": "Primary Entry",
+      "primaryEntryDescription": "Add a domain and the system will automatically enable HTTPS and use it as the primary entry.",
+      "domainLabel": "Domain",
+      "domainPlaceholder": "ops.example.com",
+      "publicHostIpLabel": "Public IP",
+      "publicHostIpPlaceholder": "107.175.190.120",
+      "publicPortLabel": "Public Port",
+      "autoHttpsLabel": "Enable HTTPS automatically",
+      "save": "Save entry settings",
+      "applying": "Applying...",
+      "saved": "Public entry settings saved",
+      "httpsEnabled": "Domain HTTPS enabled automatically",
+      "sslEmailPrompt": "This environment requires an SSL email. Enter the contact email for ACME registration:",
+      "sslEmailRequired": "Enter an SSL email before continuing.",
+      "statusLabel": "Current status",
+      "currentBackupUrlLabel": "Backup entry URL",
+      "currentPrimaryUrlLabel": "Primary entry URL",
+      "currentAccessUrlLabel": "Access URLs",
+      "jobStatusLabel": "Execution status",
+      "statusValues": {
+        "idle": "Not configured",
+        "saved": "Saved",
+        "error": "Error"
+      },
+      "jobValues": {
+        "accepted": "Accepted",
+        "running": "Running",
+        "completed": "Completed",
+        "failed": "Failed"
+      }
+    },
+    "rateRefreshed": "Exchange rate refreshed: 1 USD = {rate} CNY (source: {source})",
+    "rateSources": {
+      "fixed": "Fixed default",
+      "frankfurter": "Frankfurter",
+      "ecb": "European Central Bank"
+    },
+    "status": {
+      "description": "Customize display aliases for the four runtime states: working, idle, offline, and crashed. Leave blank to fall back to defaults.",
+      "ruleLabel": "Used when: {rule}",
+      "save": "Save status aliases",
+      "title": "Runtime Status Aliases"
+    },
+    "statusDefaults": {
+      "crashed": "Crashed",
+      "idle": "Idle",
+      "offline": "Offline",
+      "working": "Working"
+    },
+    "statusLabels": {
+      "crashed": "Crashed",
+      "idle": "Idle",
+      "offline": "Offline",
+      "working": "Working"
+    },
+    "statusRules": {
+      "crashed": "Shown when the agent crashes or enters an error state.",
+      "idle": "Shown when the agent is online but currently has no task.",
+      "offline": "Shown when the agent is offline or disconnected.",
+      "working": "Shown when the agent is actively executing work."
+    },
+    "statusUpdated": "Status aliases saved",
+    "subtitle": "Manage system language, currency preference, runtime status aliases, and public access settings.",
+    "title": "System Settings"
+  },
+  "tasks": {
+    "actions": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "send": "Send",
+      "spawn": "Spawn",
+      "submit": "Submit"
+    },
+    "create": {
+      "fields": {
+        "acceptanceCriteria": "Acceptance Criteria",
+        "assignee": "Assignee Agent",
+        "description": "Description",
+        "expectedOutput": "Expected Output",
+        "title": "Task Title"
+      },
+      "submit": "Create Task",
+      "title": "Create Task"
+    },
+    "list": {
+      "headers": {
+        "actions": "Actions",
+        "assignee": "Assignee",
+        "status": "Status",
+        "task": "Task"
+      },
+      "title": "Tasks (Pending {count})"
+    },
+    "prompts": {
+      "receiptDefault": "The task is approved. Please keep moving forward.",
+      "receiptTitle": "Enter the receipt message",
+      "rejectDefault": "Please revise according to the review and submit again.",
+      "rejectTitle": "Enter the rejection note",
+      "scoreDefault": "10",
+      "scoreTitle": "Enter the score delta",
+      "submitSummaryDefault": "Task completed and ready for review.",
+      "submitSummaryTitle": "Enter the submission summary"
+    },
+    "status": {
+      "doing": "Doing",
+      "done": "Done",
+      "rejected": "Rejected",
+      "review": "In Review",
+      "todo": "To Do"
+    }
+  },
+  "training": {
+    "actions": {
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "onboarding": {
+      "agentId": "Agent ID",
+      "agentName": "{agentId} (pending onboarding)",
+      "agentPlaceholder": "Enter the agent ID to onboard",
+      "confirm": "Confirm and trigger training",
+      "manual": "Create run only",
+      "roleSummary": "Role summary pending",
+      "title": "Onboarding Confirmation"
+    },
+    "phase": {
+      "exam": "Exam",
+      "gate": "Gate",
+      "observe": "Observation"
+    },
+    "prompts": {
+      "scoreFailDefault": "60",
+      "scorePassDefault": "80",
+      "scoreTitle": "Enter the score"
+    },
+    "result": {
+      "graduate": "Graduate",
+      "remediate": "Remediate"
+    },
+    "runs": {
+      "headers": {
+        "agent": "Agent",
+        "gate": "Gate",
+        "phase": "Phase",
+        "result": "Result",
+        "runId": "Run ID",
+        "status": "Status"
+      },
+      "title": "Training Runs"
+    }
+  },
+  "scheduleTimeline": {
+    "range": {
+      "24h": "24 hours",
+      "7d": "7 days",
+      "30d": "30 days"
+    },
+    "cadence": {
+      "all": "All"
+    },
+    "minutes": {
+      "zero": "0 minutes",
+      "hoursExact": "{hours} hours",
+      "hoursApprox": "{hours} hours",
+      "minutes": "{minutes} minutes"
+    },
+    "decadeLabel": "{decade}s",
+    "errors": {
+      "readFailed": "Failed to load timeline",
+      "saveFailed": "Failed to save scheduled job"
+    },
+    "notices": {
+      "updated": "Updated {name}"
+    },
+    "header": {
+      "eyebrow": "Agent scheduling overview",
+      "title": "Scheduled jobs management",
+      "subtitle": "Review coverage, conflicts, and idle windows by agent. Compare timelines at multiple granularities and open jobs to edit."
+    },
+    "filters": {
+      "windowLabel": "Time window",
+      "cadenceLabel": "Cadence",
+      "note": "You are filtering by job cadence, not the timeline span.",
+      "noteAll": "“All” shows every cadence type.",
+      "noteOnly": "Only showing “{label}” cadence jobs.",
+      "agentLabel": "Agent filter",
+      "agentHint": "Showing all agents when none are selected"
+    },
+    "states": {
+      "refreshing": "Refreshing timeline...",
+      "emptyAgents": "No agents to display for the current filters."
+    },
+    "registryMissing": {
+      "badge": "Scheduled jobs registry not ready",
+      "title": "No scheduled jobs to manage yet",
+      "description": "The environment hasn't loaded a scheduled jobs registry, usually because node onboarding or initialization isn't complete. Finish setup on the home page, then return for timeline and conflict analysis.",
+      "goHome": "Go to home setup",
+      "refresh": "Refresh page",
+      "tipTitle": "Setup tips",
+      "step1Title": "1. Go to the agent onboarding home",
+      "step1Description": "Use the home page wizard to connect local nodes.",
+      "step2Title": "2. Wait for initialization",
+      "step2Description": "Once nodes are online and the registry is generated, the timeline will appear here."
+    },
+    "legend": {
+      "title": "All mode = overview heatmap",
+      "light": "Lighter means fewer jobs",
+      "dark": "Darker means higher density",
+      "conflict": "Red indicates conflicts",
+      "scaleHint": "Timeline scale adapts to the time window."
+    },
+    "summary": {
+      "title": "Scheduled jobs summary",
+      "scaleGroup": "Timeline scale groups",
+      "currentCadence": "Current cadence: {label}",
+      "currentScale": "Current scale: {label}"
+    },
+    "rowStats": {
+      "coverage": "Coverage {value}",
+      "occupied": "Occupied {value}",
+      "conflict": "Conflicts {value}",
+      "enabledJobs": "Enabled jobs {value}",
+      "jobsShort": "jobs"
+    },
+    "bucket": {
+      "conflictLabel": "{count} jobs · {conflicts} conflicts",
+      "countLabel": "{count} jobs",
+      "idleLabel": "Idle",
+      "estimatedSuffix": " · est {count}",
+      "clickHint": "Click to edit",
+      "popoverTitle": "{count} tasks"
+    },
+    "row": {
+      "emptyOccurrences": "No enabled job blocks in this window",
+      "idleRangeTitle": "Idle range",
+      "conflictRangeTitle": "Conflict range",
+      "estimatedTag": "Estimated"
+    },
+    "editor": {
+      "eyebrow": "Timeline editor",
+      "close": "Close",
+      "disable": "Disable",
+      "enable": "Enable",
+      "saving": "Saving",
+      "saveAndRefresh": "Save and refresh timeline",
+      "sectionTitle": "Job basics",
+      "deliverySection": "Result delivery",
+      "deliveryModeLabel": "Delivery mode",
+      "templateLabel": "Message template",
+      "deliveryTargetLabel": "Delivery target",
+      "deliveryTargetEmpty": "No explicit delivery target is configured yet.",
+      "templateEmpty": "No template is currently attached.",
+      "fixedTopicLabel": "Fixed topic group",
+      "fixedTopicEnabled": "Fixed-topic group mode is enabled",
+      "fixedTopicDisabled": "This job is not using fixed-topic group mode",
+      "payloadModeLabel": "Payload mode",
+      "payloadModeDefault": "default",
+      "nextRun": "Next run",
+      "lastRun": "Last run",
+      "lastStatus": "Last status",
+      "lastStatusEmpty": "No record",
+      "updatedAt": "Last updated",
+      "activeBlockTitle": "Active block info",
+      "blockStart": "Start: ",
+      "blockEnd": "End: ",
+      "blockEmpty": "No block in the current window"
+    }
+  }
+}

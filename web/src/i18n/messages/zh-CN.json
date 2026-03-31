@@ -1,0 +1,2405 @@
+{
+  "meta": {
+    "title": "ClawPilot",
+    "description": "ClawPilot 多 Agent 调度与控制台"
+  },
+  "locale": {
+    "name": {
+      "zh-CN": "中文（简体）",
+      "en-US": "English"
+    }
+  },
+  "banner": {
+    "message": "检测到你的浏览器语言是 {browserLanguage}。是否切换到 {browserLanguage}？",
+    "switch": "切换到 {browserLanguage}",
+    "dismiss": "不再提示"
+  },
+  "brand": {
+    "name": "ClawPilot"
+  },
+  "nav": {
+    "start": "开始使用",
+    "agents": "Agent 工区",
+    "addAgent": "新增 Agent",
+    "scheduleTimeline": "定时任务",
+    "repair": "修复问题",
+    "rescueCenter": "高级救援",
+    "openclaw": "系统资料库",
+    "lobsterToolkit": "技能工具库",
+    "leaderboard": "排行榜",
+    "dataAnalysis": "数据分析",
+    "agentConfigs": "Agent 配置",
+    "accounts": "员工管理",
+    "roles": "角色管理",
+    "systemSettings": "系统设置",
+    "tasks": "协作与批量优化",
+    "training": "培训与入职",
+    "group": {
+      "start": "开始使用",
+      "agentManagement": "Agent 管理",
+      "agentTasks": "Agent 任务",
+      "runtimeRepair": "运行与修复",
+      "insights": "数据洞察",
+      "management": "系统与安全"
+    }
+  },
+  "dashboard": {
+    "overview": "总览",
+    "stats": {
+      "agents": "Agents",
+      "tasks": "任务",
+      "training": "训练",
+      "topPoints": "最高积分"
+    }
+  },
+  "sidebar": {
+    "expand": "展开侧边栏",
+    "collapse": "收起侧边栏",
+    "openNav": "打开导航",
+    "expandNav": "展开导航",
+    "collapseNav": "收起导航",
+    "membership": {
+      "freePlan": "免费会员",
+      "upgrade": "升级"
+    }
+  },
+  "authGate": {
+    "checking": "正在检查控制面登录状态…"
+  },
+  "pages": {
+    "agents": {
+      "title": "Agent 工区",
+      "subtitle": "查看每个 Agent 的当前工作区状态、文件入口和接入进度。",
+      "viewMode": {
+        "description": "巡查模式只保留头图与职责摘要，管理模式显示完整信息与全部操作。",
+        "label": "列表模式",
+        "manage": "管理模式",
+        "patrol": "巡查模式"
+      },
+      "unreachable": {
+        "title": "本地 API 当前不可达",
+        "description": "Agents 页面需要先读取本地控制面 API。前端已经启动，但后端地址当前没有响应，所以页面先切换到恢复提示。",
+        "apiLabel": "当前 API 地址",
+        "apiHint": "先确认这个地址能访问，再刷新当前页面。",
+        "errorLabel": "错误详情",
+        "commandLabel": "本地启动命令",
+        "commandHint": "如果你不是通过 Docker 运行，这组命令可以直接把本地 FastAPI 拉起来。",
+        "reload": "刷新页面"
+      },
+      "empty": {
+        "title": "当前还没有可展示的 Agent",
+        "description": "本地 OpenClaw 配置已经加载成功，但还没有在 `agents.list` 中声明任何 Agent，所以这里先显示为空列表。",
+        "firstLobster": {
+          "cta": "领取第一只小龙虾🦞",
+          "ctaHint": "输入名称并选择入口渠道后，会自动创建飞书机器人并完成领取。",
+          "eyebrow": "First Agent Claim",
+          "title": "领取第一只小龙虾🦞",
+          "description": "先选择你要接入的渠道，默认工作区和高级配置已经准备好。默认飞书路径会自动创建机器人并完成首轮配置。",
+          "hero": {
+            "workspaceReady": "默认工作区已就绪",
+            "workspaceMissing": "默认工作区未就绪",
+            "focusPrimary": "先接 1 个入口渠道",
+            "progressive": "更多设置按需展开"
+          },
+          "close": "关闭",
+          "loading": "正在读取默认工作区初始化内容…",
+          "retry": "重新加载",
+          "errors": {
+            "previewFailed": "读取默认工作区预览失败，请稍后重试。",
+            "claimFailed": "领取小龙虾失败，请检查飞书登录态或稍后重试。",
+            "weixinQrFailed": "获取微信二维码失败，请稍后重试。",
+            "weixinQrNotConfirmed": "请先扫码完成微信授权。",
+            "weixinCliMissing": "未找到 openclaw CLI。请为服务进程补充 OPENCLAW_CLI_BIN，或确保 PATH 包含 /opt/homebrew/bin。",
+            "weixinQrTimeout": "拉起微信扫码登录超时，请稍后重试。",
+            "pairingTextInvalid": "没有识别到有效的 Feishu user id 或 Pairing code，请把机器人返回的整段内容原样粘贴进来。",
+            "pairingConfirmFailed": "完成配对失败，请稍后重试。",
+            "pairingApproveFailed": "OpenClaw pairing approve 失败：{reason}",
+            "pairingCliMissing": "当前环境缺少可用的 openclaw CLI，暂时无法完成自动配对。",
+            "pairingAgentMissing": "当前 Agent 信息缺失，请重新创建后再试。",
+            "openChatBlocked": "飞书对话链接已生成，但浏览器拦截了新窗口，请允许弹窗后重试。"
+          },
+          "weixin": {
+            "loading": "正在获取微信登录二维码…",
+            "idle": "点击下方按钮生成领取二维码，扫码确认后再继续领取。",
+            "waitingTitle": "扫码中",
+            "waitingHint": "请使用微信扫描下方二维码，完成登录授权。",
+            "scannedTitle": "已扫码，待手机确认",
+            "scannedHint": "请在手机上继续确认授权，确认完成后即可继续领取。",
+            "confirmedTitle": "已确认，可继续领取",
+            "confirmedHint": "微信授权已完成，现在可以点击下方按钮写入配置并领取。",
+            "scanTitle": "请用微信扫描二维码",
+            "scanHint": "打开微信 → 扫一扫 → 扫描此二维码完成授权",
+            "scanned": "已扫码，请在手机上继续确认授权。",
+            "confirmed": "微信授权成功",
+            "expired": "二维码已过期",
+            "retry": "重新获取"
+          },
+          "workspace": {
+            "title": "默认工作区",
+            "source": "来源：{source}",
+            "sources": {
+              "config": "openclaw.json.agents.defaults.workspace",
+              "fallback": "~/.openclaw/workspace 回退路径"
+            },
+            "available": "可领取",
+            "unavailable": "工作区缺失",
+            "unavailableHint": "默认工作区目录不存在或尚未完成初始化。请先完成 openclaw onboard，再回来领取第一只小龙虾。",
+            "recommendedAgent": "推荐写入 Agent：{name}（{id}），固定复用默认 workspace。"
+          },
+          "files": {
+            "title": "初始化文件",
+            "missing": "文件缺失",
+            "previewReady": "已读取文本预览",
+            "previewUnavailable": "当前文件无法提供文本预览",
+            "error": "读取失败：{error}",
+            "noPreview": "当前文件没有可展示的文本预览。"
+          },
+          "channels": {
+            "title": "扩展渠道",
+            "description": "默认先接入一个渠道。如果你需要同时绑定多个渠道，可以在这里继续追加。"
+          },
+          "primary": {
+            "title": "主渠道",
+            "description": "主渠道用于定义首个 Agent 的默认运行入口。多选渠道时必须明确指定。",
+            "empty": "请先选择至少一个渠道。"
+          },
+          "steps": {
+            "choose": {
+              "kicker": "Step 1",
+              "title": "先选择渠道",
+              "description": "先决定第一只小龙虾从哪个渠道开始工作。大多数情况下只需要一个渠道，复杂绑定可以稍后再展开。",
+              "selected": "当前入口",
+              "primary": "当前入口",
+              "secondary": "附加渠道",
+              "available": "可切换",
+              "requires": "需要：{fields}"
+            },
+            "name": {
+              "title": "先给它起个名字",
+              "description": "这个名字会用于 {agentName} 对应的飞书应用与首次接入配置。",
+              "label": "OpenClaw 名称",
+              "placeholder": "例如：ClawPilot",
+              "hint": "建议使用你一眼就能认出的名字，后续也可以再调整。"
+            },
+            "channel": {
+              "title": "选择它从哪里开始工作",
+              "description": "当前这里只保留飞书和微信两个入口渠道。先选定入口渠道，下一步再创建并领取。",
+              "recommended": "推荐",
+              "defaultEntry": "默认入口"
+            },
+            "pairingHello": {
+              "title": "去飞书给它发一句“你好”",
+              "description": "{agentName} 已创建完成，但还差最后一次私聊配对。",
+              "badge": "Feishu Pairing",
+              "body": "点击下方按钮打开飞书对话，给 {agentName} 发一条“你好”。机器人会返回一段包含 Feishu user id 和 Pairing code 的文本，我们下一步就用它完成配置。",
+              "message": "你好"
+            },
+            "pairingPaste": {
+              "title": "把机器人返回的内容粘贴回来",
+              "description": "把飞书里机器人回复给你的整段文本原样粘贴进来，系统会自动解析并完成配对。",
+              "exampleTitle": "示例格式",
+              "exampleBlock": "OpenClaw: access not configured.\nYour Feishu user id: ou_e70e90b5d6a24092d32291815085f0a1\nPairing code: PXE6J2Z7\nAsk the bot owner to approve with:\nopenclaw pairing approve feishu PXE6J2Z7",
+              "label": "配对文本",
+              "placeholder": "把机器人回复的整段文字粘贴到这里…",
+              "hint": "无需手工拆字段，只要原样粘贴即可。"
+            },
+            "credentials": {
+              "kicker": "Step 2",
+              "title": "配置当前渠道：{channel}",
+              "description": "只有需要手动接入时，才需要填写这里的凭证。选择飞书时，也可以先尝试自动创建。"
+            },
+            "claim": {
+              "kicker": "Step 3",
+              "title": "一键创建并领取",
+              "description": "会先自动创建飞书 OpenClaw 机器人，再按官方默认模板生成 SOUL.md、工作区结构和首次接入配置，并完成 {agentName} 的领取。",
+              "descriptionWeixin": "完成微信扫码授权后，会直接写入默认工作区配置并完成 {agentName} 的领取。",
+              "ready": "可以直接领取",
+              "missingFields": "还差 {count} 项凭证",
+              "workspaceBlocked": "工作区未就绪"
+            }
+          },
+          "advanced": {
+            "title": "自定义设置",
+            "description": "查看手动接入凭证、扩展渠道、默认工作区和初始化文件。",
+            "open": "查看详细设置",
+            "close": "收起详细设置",
+            "secondaryCredentialsTitle": "其他渠道凭证"
+          },
+          "summary": {
+            "agent": "写入 Agent",
+            "primary": "当前入口",
+            "workspace": "默认工作区",
+            "secondary": "附加渠道",
+            "credentials": "凭证完成度",
+            "channels": "已启用渠道",
+            "advancedState": "更多设置",
+            "advancedClosed": "默认收起",
+            "advancedOpen": "已展开",
+            "secondaryValue": "已添加 {count} 个附加渠道",
+            "secondaryNone": "仅当前入口"
+          },
+          "credentials": {
+            "title": "渠道凭证",
+            "tip": "Feishu 使用 appId/appSecret；Telegram 使用 botToken；Discord 使用 token。",
+            "empty": "勾选渠道后，这里会显示对应的凭证输入项。",
+            "accountHint": "将写入 accountId：{accountId}"
+          },
+          "autoCreate": {
+            "title": "飞书自动创建",
+            "description": "复用本地浏览器登录态，走飞书 OpenClaw 快速创建页，自动创建机器人并取回凭证。",
+            "hint": "需先登录飞书开放平台。创建成功后会自动回填 appId / appSecret，并提供一个可直接和小龙虾对话的入口。",
+            "start": "开始创建",
+            "creating": "创建中...",
+            "completed": "已自动回填飞书凭证，继续点击下方“写入 openclaw.json 并领取”即可完成认领。",
+            "completedCdp": "已复用当前 Chrome 会话回填飞书凭证，继续点击下方“写入 openclaw.json 并领取”即可完成认领。",
+            "openChat": "立即打开飞书对话",
+            "appDescription": "{agentName}，负责统管所有业务",
+            "menuName": "/status 状态",
+            "errors": {
+              "feishuLoginRequired": "未检测到飞书登录态，请先登录飞书开放平台后重试。",
+              "dependencyMissing": "缺少 UI 自动化依赖。",
+              "autoCreateFailed": "自动化创建飞书应用失败，请稍后重试。"
+            }
+          },
+          "actions": {
+            "goSettings": "去多 Agent 设置",
+            "next": "下一步",
+            "back": "上一步",
+            "claim": "一键创建并领取",
+            "generateWeixinQr": "生成领取二维码",
+            "generatingWeixinQr": "正在生成二维码…",
+            "waitingWeixinQr": "等待扫码确认…",
+            "claimWeixin": "写入配置并领取",
+            "claiming": "正在创建并领取…",
+            "claimingWeixin": "正在领取…",
+            "openFeishuChat": "打开飞书对话",
+            "pairingNext": "我已经发了",
+            "completePairing": "完成配置",
+            "completingPairing": "正在完成配置…",
+            "waitingLogin": "等待并确认飞书登录…",
+            "claimHint": "默认会自动创建飞书机器人，并按当前名称、官方最佳 SOUL.md 模板和默认工作区结构，为 {agentName} 完成领取。",
+            "claimHintWeixin": "完成微信扫码授权后，会把当前名称和默认工作区结构写入 openclaw.json，并直接为 {agentName} 完成领取。",
+            "waitingLoginHint": "飞书登录页已经打开。请在新开的浏览器里完成登录；如果你已经登录成功，系统会主动回到 OpenClaw 页面确认会话，并自动切换到“正在进行中”。",
+            "claimingHint": "已确认飞书登录，正在进行中：系统正在自动创建机器人、写入配置并完成领取。",
+            "manualFallback": "当前渠道还需要补充详细设置，请展开后继续。",
+            "defaultFlowOnlyFeishu": "当前默认生成流先支持飞书入口，其他渠道的一键创建会由后端逻辑接管。"
+          },
+          "run": {
+            "preparingTitle": "正在准备自动领取任务",
+            "preparingDescription": "系统正在拉起飞书自动化流程，马上会打开飞书页面。",
+            "waitingLoginTitle": "等待并确认飞书登录",
+            "waitingLoginDescription": "请直接在刚打开的飞书浏览器窗口里完成登录。若你已登录成功，系统会主动回访 OpenClaw 创建页确认会话，随后自动切换到“正在进行中”。",
+            "claimingTitle": "正在进行中",
+            "claimingDescription": "飞书登录已确认，系统正在自动创建机器人、写入配置并完成 {agentName} 的领取。",
+            "completedTitle": "自动领取完成",
+            "completedDescription": "{agentName} 已经创建并领取完成。接下来去飞书给它发一条“你好”，完成最后的私聊配对。",
+            "failedTitle": "自动领取失败"
+          },
+          "validation": {
+            "channelRequired": "至少需要选择一个渠道。",
+            "primaryRequired": "选择多个渠道时，必须指定主渠道。",
+            "fieldRequired": "{channel} 的 {field} 不能为空。",
+            "fixFields": "请先补齐渠道凭证后再提交。",
+            "workspaceUnavailable": "默认工作区当前不可用，暂时无法领取。",
+            "nameRequired": "请先填写 OpenClaw 名称。",
+            "pairingTextRequired": "请先粘贴机器人返回的配对文本。",
+            "loginRequired": "请先登录 ClawPilot 控制面账号，然后再领取 {agentName}。",
+            "passwordChangeRequired": "当前账号需要先修改密码，完成后才能继续领取 {agentName}。",
+            "sessionExpired": "登录状态已失效，请重新登录后继续领取 {agentName}。",
+            "sessionPasswordChangeRequired": "账号状态已更新，需要先修改密码后再继续领取 {agentName}。"
+          },
+          "success": {
+            "badge": "已配置完成",
+            "title": "配置完成",
+            "description": "快去跟 {agentName} 聊聊天吧",
+            "openChat": "继续去飞书",
+            "close": "关闭"
+          }
+        }
+      },
+      "claimMore": {
+        "cta": "入职新 Agent",
+        "title": "入职新 Agent",
+        "targetLabel": "即将入职",
+        "targetValue": "{agentName}（{agentId}）",
+        "targetHint": "完成后，新 Agent 会自动加入当前 Agent 列表。",
+        "fallbackAgentName": "下一位 Agent"
+      }
+    },
+    "tasks": {
+      "title": "任务中心",
+      "subtitle": "查看和管理任务流转、状态变化与处理节奏。"
+    },
+    "training": {
+      "title": "训练中心",
+      "subtitle": "集中查看训练运行、结果与评估状态。"
+    },
+    "lobsterToolkit": {
+      "title": "技能工具库",
+      "subtitle": "按库和来源查看工具分派情况，更多细节放进二层弹层。",
+      "tabs": {
+        "skill": "技能库",
+        "cli": "CLI 库",
+        "system": "系统预设",
+        "user": "我的"
+      },
+      "searchPlaceholder": "搜索标题 / slug / 来源",
+      "states": {
+        "loading": "正在加载工具卡片…",
+        "empty": "当前筛选下还没有工具卡片。",
+        "error": "读取工具库失败"
+      },
+      "card": {
+        "targets": "已分派",
+        "shared": "共享区",
+        "agents": "Agent",
+        "newVersion": "新版本",
+        "latest": "已最新"
+      },
+      "detail": {
+        "brand": "品牌",
+        "dispatchAction": "分派到所选目标",
+        "dispatchDescription": "选择目标后会把这个 Skill 分派到共享区或指定 Agent 的 workspace skills 目录。",
+        "dispatchFailed": "分派 Skill 失败",
+        "dispatchLoadingAgents": "正在读取 Agent 列表…",
+        "dispatchTargetRequired": "请至少选择一个分派目标。",
+        "dispatchTitle": "直接分派",
+        "dispatching": "分派中...",
+        "updateAction": "更新版本",
+        "updateFailed": "更新版本失败",
+        "title": "工具详情",
+        "close": "关闭",
+        "provider": "来源渠道",
+        "scope": "来源范围",
+        "remote": "远端地址",
+        "targets": "已具备该能力的 Agent",
+        "checkedAt": "最近检查",
+        "publishedAt": "远端更新时间",
+        "version": "当前版本",
+        "latestVersion": "新版本",
+        "notDeployed": "暂未分派",
+        "sharedScope": "共享区",
+        "agentScope": "指定 Agent",
+        "updating": "更新中...",
+        "viewSource": "查看来源"
+      }
+    },
+    "dataAnalysis": {
+      "title": "数据分析",
+      "subtitle": "查看当前控制台的核心指标、近 7 天活动趋势和任务分布。",
+      "tabs": {
+        "overview": "数据概览",
+        "leaderboard": "Agent 积分排名"
+      },
+      "notices": {
+        "partialData": "部分分析数据暂时不可用，页面已切换到安全兜底状态。"
+      },
+      "emptyChart": "当前没有足够的数据可用于生成图表。",
+      "sections": {
+        "activity": {
+          "title": "近 7 天活动趋势",
+          "description": "按天查看 Agent、任务和训练记录的新增变化。"
+        },
+        "taskStatus": {
+          "title": "任务状态分布",
+          "description": "快速查看当前任务池在不同状态下的数量分布。"
+        },
+        "agentRuntime": {
+          "title": "Agent 运行状态",
+          "description": "查看当前 Agent 运行态的整体占比。"
+        },
+        "leaderboard": {
+          "title": "积分排行 Top 6",
+          "description": "以积分维度观察当前最活跃的 Agent。"
+        }
+      },
+      "taskStatus": {
+        "todo": "待开始",
+        "doing": "进行中",
+        "review": "待审核",
+        "done": "已完成",
+        "rejected": "已驳回"
+      },
+      "runtime": {
+        "working": "正在干活",
+        "idle": "躺平中",
+        "offline": "离线",
+        "crashed": "崩溃中"
+      }
+    },
+    "leaderboard": {
+      "title": "排行榜",
+      "subtitle": "按积分查看当前 Agent 排名、前三表现和后续梯队。",
+      "metrics": {
+        "activeAgents": "活跃 Agent",
+        "activeHint": "当前榜单",
+        "leaderPoints": "榜首积分",
+        "leaderHint": "第一名",
+        "topThree": "前三积分",
+        "topThreeHint": "合计"
+      },
+      "moreTitle": "更多排名",
+      "moreDescription": "查看第 4 名及之后的 Agent。",
+      "emptyList": "当前只有前三名数据，总积分 {totalPoints}。",
+      "emptyTopThree": "当前还没有足够的排名数据。",
+      "fallbackLeading": "负责当前主导工作",
+      "fallbackWaiting": "等待更多工作记录",
+      "pointsLabel": "积分",
+      "podium": {
+        "first": "冠军",
+        "second": "亚军",
+        "third": "季军"
+      },
+      "topThree": {
+        "title": "TOP 3",
+        "subtitle": "前三席位",
+        "totalLabel": "总积分",
+        "leaderLabel": "当前领跑"
+      }
+    }
+  },
+  "agentSetup": {
+    "listSeparator": "、",
+    "header": {
+      "kicker": "本地接入向导",
+      "title": "完成 OpenClaw 本地节点接入",
+      "subtitle": "先准备本地节点，再把它接入 ClawPilot 控制平面。完成后，后续工作区、文件派发和 Agent 执行才会真正与本地环境联动。"
+    },
+    "status": {
+      "online": "在线",
+      "offline": "离线",
+      "pending": "待接入"
+    },
+    "messages": {
+      "nodeOnline": "节点已上线，正在刷新页面。",
+      "copied": "已复制{label}"
+    },
+    "errors": {
+      "pollFailed": "轮询节点状态失败",
+      "copyFailed": "复制{label}失败，请手动复制",
+      "bootstrapUnavailable": "当前环境暂时不能生成接入命令",
+      "generateFailed": "生成接入命令失败"
+    },
+    "fields": {
+      "nodeName": "节点名称",
+      "rootPath": "根目录路径"
+    },
+    "steps": {
+      "info": {
+        "title": "填写节点信息",
+        "description": "输入节点名称和 OpenClaw 根目录。"
+      },
+      "execute": {
+        "title": "执行接入命令",
+        "description": "复制命令到目标机器执行。"
+      },
+      "wait": {
+        "title": "等待节点上线",
+        "description": "系统会自动轮询节点状态并刷新。"
+      }
+    },
+    "cta": {
+      "unavailable": "暂不可生成",
+      "generating": "生成中...",
+      "ready": "生成接入命令",
+      "fillMore": "继续补全信息",
+      "unavailableHint": "当前环境未就绪",
+      "generatingHint": "正在生成接入命令",
+      "readyHint": "可以开始生成接入命令了",
+      "missingHint": "还缺少 {count} 项必填信息",
+      "unavailableDesc": "先修复当前环境阻塞项，等系统允许生成 bootstrap 命令后再继续。",
+      "generatingDesc": "系统正在创建节点并生成对应命令，完成后会自动切换到可复制状态。",
+      "readyDesc": "信息已经齐全，点击右侧按钮即可为当前节点生成一条可执行的接入命令。",
+      "missingDesc": "请先补齐这些信息：{fields}",
+      "processing": "正在处理",
+      "clickable": "可立即执行",
+      "disabled": "当前不可执行"
+    },
+    "promptEmpty": "当前没有可用的 bootstrap prompt。",
+    "issues": {
+      "missingConfig": "尚未检测到 openclaw 配置文件",
+      "noNodes": "当前还没有任何节点"
+    },
+    "waiting": {
+      "title": "正在等待节点上线",
+      "status": "节点 {nodeId} 当前状态：{status}"
+    },
+    "summary": {
+      "title": "当前接入概览",
+      "subtitle": "先确认配置、节点数量和 bootstrap 状态，再继续执行本地接入。",
+      "config": "配置文件",
+      "found": "已发现",
+      "missing": "未发现",
+      "nodes": "节点数",
+      "bootstrap": "Bootstrap",
+      "ready": "已就绪",
+      "unavailable": "不可用",
+      "localAccess": "本地访问入口",
+      "localWeb": "本地 Web",
+      "localApi": "本地 API 健康检查",
+      "localHealth": "本地健康状态",
+      "localWebCheck": "Web",
+      "localApiCheck": "API",
+      "localWebCopyLabel": "本地 Web 地址",
+      "localApiCopyLabel": "本地 API 地址",
+      "publicAccess": "公网访问状态",
+      "publicStatus": "公网状态",
+      "publicReason": "原因",
+      "publicProvider": "暴露方式",
+      "publicUrl": "公网地址",
+      "publicUrlCopyLabel": "公网地址",
+      "providerQuick": "Quick Tunnel（临时测试）",
+      "publicHint": "如需临时公网入口，可执行 ./clawpilot expose quick。",
+      "notAvailable": "暂不可用",
+      "notGenerated": "尚未生成",
+      "notConfigured": "未配置",
+      "healthOk": "正常",
+      "healthFailed": "失败",
+      "healthUnknown": "未知",
+      "publicStatuses": {
+        "notRequested": "未请求公网暴露",
+        "verified": "已验证可访问",
+        "pending": "正在验证",
+        "unavailable": "不可用",
+        "disabled": "未启用",
+        "unknown": "未知"
+      },
+      "blockers": "当前阻塞项",
+      "noBlockers": "目前没有阻塞项，可以继续接入。"
+    },
+    "prompt": {
+      "title": "Bootstrap Prompt",
+      "subtitle": "下面这段 prompt 可直接给 OpenClaw 本地部署代理使用。",
+      "notice": "这段内容会随着当前环境状态变化而变化，适合直接复制给本地执行代理。",
+      "copyLabel": "Bootstrap Prompt",
+      "copy": "复制 Prompt"
+    },
+    "command": {
+      "title": "当前接入命令",
+      "titleFallback": "生成接入命令",
+      "descriptionReady": "这是一条针对当前节点生成的最新接入命令，复制后直接到目标机器执行即可。",
+      "descriptionUnavailable": "当前环境未满足 bootstrap 生成条件，所以暂时无法展示接入命令。",
+      "descriptionDefault": "填写下方节点信息后即可生成接入命令。",
+      "reset": "重新生成",
+      "copyLabel": "接入命令",
+      "unavailable": "当前没有可用的接入命令。",
+      "created": "已为 {name} 生成接入命令，节点当前状态：{status}"
+    },
+    "form": {
+      "nodeName": "节点名称",
+      "nodePlaceholder": "例如：我的本地工作机",
+      "rootLabel": "OpenClaw 根目录"
+    }
+  },
+  "skills": {
+    "errors": {
+      "readFailed": "读取 Skills 列表失败"
+    },
+    "import": {
+      "zip": {
+        "noFile": "请先选择 ZIP 文件",
+        "success": "已导入 {name}",
+        "failed": "导入 ZIP 失败"
+      },
+      "github": {
+        "noUrl": "请填写 GitHub 地址",
+        "success": "已从 GitHub 导入 {name}",
+        "failed": "GitHub 导入失败"
+      }
+    },
+    "delete": {
+      "success": "已删除 {name}",
+      "failed": "删除失败"
+    },
+    "dialog": {
+      "eyebrow": "Skill 管理",
+      "title": "{agent} 已挂载的 Skills",
+      "description": "只展示当前 Agent `skills` 目录里的 Skill 文件夹，点击任意卡片即可进入文件工区。"
+    },
+    "actions": {
+      "uploadZip": "上传 ZIP",
+      "githubRepo": "GitHub 仓库",
+      "closeDialog": "关闭 Skills 弹窗",
+      "cancel": "取消",
+      "startImport": "开始导入",
+      "importing": "导入中...",
+      "deleting": "删除中...",
+      "confirmDelete": "确认删除"
+    },
+    "states": {
+      "loading": "正在读取 Skills 文件夹...",
+      "error": "读取 Skills 列表失败：{error}",
+      "empty": "当前还没有发现 Skill 文件夹。你可以先从 ZIP 或 GitHub 仓库导入一个 Skill。"
+    },
+    "card": {
+      "symlink": "软链接",
+      "unknownTarget": "未知目标",
+      "openFiles": "点击查看文件",
+      "menuAria": "更多操作 {name}",
+      "menuOpen": "打开文件工区",
+      "menuDelete": "删除 Skill"
+    },
+    "zipDialog": {
+      "eyebrow": "添加 Skill",
+      "title": "从 ZIP 导入 Skill",
+      "description": "上传一个 Skill 压缩包，系统会解压到当前 Agent 的 `skills` 目录，并自动删除 ZIP。",
+      "closeAria": "关闭 ZIP 导入弹窗",
+      "fileLabel": "ZIP 文件",
+      "filePlaceholder": "选择一个 .zip Skill 包",
+      "rulePrefix": "规则：只支持",
+      "ruleMiddle": "，导入后会自动解压到",
+      "ruleSuffix": "，并只保留解压后的 Skill 文件夹。"
+    },
+    "githubDialog": {
+      "eyebrow": "添加 Skill",
+      "title": "从 GitHub 仓库导入",
+      "description": "支持 GitHub 公开仓库地址，或公开仓库里的 `tree/...` 子目录地址。",
+      "closeAria": "关闭 GitHub 导入弹窗",
+      "urlLabel": "GitHub 地址",
+      "urlPlaceholder": "https://github.com/owner/repo/tree/main/skill",
+      "targetLabel": "目标目录名（可选）",
+      "targetPlaceholder": "不填则自动推断"
+    },
+    "deleteDialog": {
+      "eyebrow": "删除 Skill",
+      "title": "确认删除 {name} ?",
+      "descriptionPrefix": "将删除当前 Agent 工作区中的整个目录",
+      "descriptionSuffix": "。目录内所有子文件和子目录都会被一并删除，删除后不可恢复。",
+      "closeAria": "关闭删除确认弹窗"
+    },
+    "workspace": {
+      "errors": {
+        "readFileFailed": "读取 Skill 文件失败",
+        "readDirFailed": "读取 Skill 目录失败",
+        "saveFailed": "保存 Skill 文件失败"
+      },
+      "symlinkLabel": "软链接 → {target}",
+      "unknownTarget": "未知目标",
+      "eyebrow": "Skill 文件工区",
+      "description": "左侧查看 Skill 目录树，右侧预览并编辑当前文件。",
+      "closeAria": "关闭 Skill 文件工区",
+      "treeTitle": "目录树",
+      "loadingDirectory": "正在读取 Skill 目录...",
+      "filePlaceholder": "选择一个 Skill 文件",
+      "fileHint": "左侧点击文件后，在这里预览或编辑。",
+      "preview": "预览",
+      "edit": "编辑",
+      "saveAria": "保存 Skill 文件",
+      "saving": "保存中",
+      "save": "保存",
+      "loadingFile": "正在读取 Skill 文件...",
+      "emptySelection": "当前 Skill 还没有选中文件，先从左侧目录树选择一个文件。"
+    }
+  },
+  "scheduledJobs": {
+    "errors": {
+      "readFailed": "读取定时任务失败",
+      "saveFailed": "保存定时任务失败",
+      "createFailed": "创建定时任务失败",
+      "exportFailed": "导出 Markdown 失败"
+    },
+    "notices": {
+      "updated": "已更新 {name}",
+      "created": "已创建 {name}",
+      "exported": "已导出 {name}"
+    },
+    "dialog": {
+      "eyebrow": "定时任务",
+      "title": "{agent} 的定时任务",
+      "descriptionFocused": "单条编辑模式下可聚焦调整一条任务，保存后返回卡片总览继续浏览。",
+      "descriptionOverview": "先用卡片总览快速浏览任务状态，再进入单条编辑页调整时间和内容。"
+    },
+    "actions": {
+      "export": "导出 Markdown",
+      "exporting": "导出中",
+      "new": "新建定时任务",
+      "close": "关闭"
+    },
+    "states": {
+      "loading": "正在读取定时任务...",
+      "empty": "当前 Agent 还没有可管理的定时任务。"
+    },
+    "summary": {
+      "title": "任务卡片总览",
+      "description": "每张卡片展示核心状态信息，点击后进入该任务的完整编辑页。"
+    },
+    "card": {
+      "unnamed": "未命名任务",
+      "noDescription": "未填写任务说明",
+      "enabled": "启用中",
+      "disabled": "已停用",
+      "scheduleInfo": "定时信息",
+      "delivery": "发送渠道",
+      "lastRun": "最近执行",
+      "nextRun": "下次执行",
+      "statusUnknown": "未记录状态",
+      "enterEdit": "进入编辑"
+    },
+    "detail": {
+      "unnamed": "未命名任务",
+      "backToList": "返回卡片列表",
+      "disable": "停用",
+      "enable": "启用",
+      "saving": "保存中",
+      "save": "保存",
+      "nextRun": "下次执行",
+      "lastRun": "最近执行",
+      "lastStatus": "最近状态",
+      "lastStatusEmpty": "未记录",
+      "updatedAt": "最后更新"
+    },
+    "createDialog": {
+      "title": "新建定时任务",
+      "description": "设置 Agent 自动执行的周期任务。只需填写名称、频率和指令即可快速创建。",
+      "sectionTitle": "任务基础信息",
+      "sectionDescription": "创建完成后会自动回到主弹窗列表中。",
+      "enabled": "创建后自动启用",
+      "disabled": "创建后暂不启用",
+      "contentPlaceholder": "告诉 Agent 需要做什么，例如：\n「请汇总今天的待办事项，生成日报并发到群里」",
+      "cancel": "取消",
+      "creating": "创建中",
+      "submit": "创建并启用"
+    },
+    "export": {
+      "title": "{agent} 定时任务配置",
+      "overviewTitle": "当前任务列表",
+      "empty": "当前 Agent 暂无定时任务。",
+      "labels": {
+        "agentName": "Agent 名称",
+        "agentId": "Agent ID",
+        "agentRole": "Agent 角色",
+        "exportedAt": "导出时间",
+        "totalJobs": "定时任务总数",
+        "jobId": "任务 ID",
+        "enabledStatus": "启用状态",
+        "scheduleKind": "调度类型",
+        "scheduleSummary": "调度摘要",
+        "cronExpr": "Cron 表达式",
+        "timezone": "时区",
+        "everyMs": "everyMs",
+        "everyMinutes": "everyMinutes",
+        "singleAt": "单次时间",
+        "deliveryChannel": "发送渠道",
+        "deliverySummary": "发送摘要",
+        "templateKind": "模板类型",
+        "bootstrapEnabled": "初始化同步",
+        "bootstrapStatus": "同步状态",
+        "bootstrapRoot": "同步目录",
+        "bootstrapMessage": "同步说明",
+        "syncedFiles": "同步文件",
+        "payloadKind": "Payload 类型",
+        "contentField": "内容字段",
+        "lastRun": "最近执行",
+        "nextRun": "下次执行",
+        "lastStatus": "最近状态",
+        "updatedAt": "最后更新"
+      },
+      "values": {
+        "enabled": "启用中",
+        "disabled": "已停用",
+        "bootstrapOn": "开启",
+        "bootstrapOff": "关闭",
+        "internal": "internal",
+        "unnamed": "未命名任务"
+      },
+      "sections": {
+        "description": "描述",
+        "content": "任务内容",
+        "templateBody": "模板正文"
+      }
+    }
+  },
+  "workspaceInspector": {
+    "kinds": {
+      "directory": "目录",
+      "markdown": "Markdown",
+      "image": "图片",
+      "video": "视频",
+      "audio": "音频",
+      "pdf": "PDF",
+      "document": "文档",
+      "archive": "压缩包",
+      "code": "代码",
+      "text": "文本",
+      "file": "文件"
+    },
+    "previewKinds": {
+      "unknown": "未知",
+      "text": "文本",
+      "code": "代码",
+      "image": "图片",
+      "video": "视频",
+      "audio": "音频",
+      "pdf": "PDF",
+      "markdown": "Markdown",
+      "document": "文档",
+      "archive": "压缩包",
+      "file": "文件"
+    },
+    "aria": {
+      "collapse": "收起 {name}",
+      "expand": "展开 {name}"
+    },
+    "eyebrow": "体检工位",
+    "title": "{agent} 文件工区",
+    "description": "左侧是可展开的目录树，右侧用于查看详情和直接编辑文本文件。",
+    "actions": {
+      "backToAgents": "返回 Agent 工区",
+      "refresh": "刷新",
+      "refreshing": "刷新中",
+      "preview": "预览",
+      "edit": "编辑",
+      "downloadOriginal": "下载原件",
+      "reload": "重新读取",
+      "reloading": "重载中",
+      "save": "保存修改",
+      "saving": "保存中",
+      "sendToAgent": "派给 Agent",
+      "close": "关闭",
+      "cancel": "取消"
+    },
+    "stats": {
+      "currentDirectory": "当前目录 · {name}",
+      "totalItems": "共 {count} 项",
+      "loadedDirectories": "已加载 {count} 个目录"
+    },
+    "search": {
+      "placeholder": "搜索文件名或路径",
+      "resultsHint": "搜索结果仅覆盖已加载节点。",
+      "lazyHint": "目录按需加载，展开文件夹后才会继续拉取子目录。"
+    },
+    "states": {
+      "loadingDirectory": "正在加载目录...",
+      "noMatches": "当前筛选条件下没有匹配文件。"
+    },
+    "emptySelection": "从左侧树中选择一个文件查看详情；代码、图片、视频、PDF 与 Office 文件会自动切换到对应预览器。",
+    "details": {
+      "title": "文件详情",
+      "unsaved": "有未保存修改",
+      "editable": "可编辑",
+      "readonly": "只读"
+    },
+    "preview": {
+      "unpreviewable": "这个文件不是文本格式，当前只支持查看文件信息，不支持在线预览或编辑。",
+      "unpreviewableHint": "虽然不能在线预览，但仍可把原文件派发给其他 Agent 处理。",
+      "truncatedWarning": "文件内容较大，当前只展示了前 256KB 预览。保存时只会写入你编辑器中的当前内容。",
+      "codePreview": "代码高亮预览",
+      "textPreview": "文本预览",
+      "editModeHint": "当前处于编辑态，可直接修改并保存到远程工作区。",
+      "previewModeHint": "当前处于预览态，需要修改时可切到编辑。",
+      "autoPreviewHint": "当前文件已按类型切换到对应预览器。"
+    },
+    "errors": {
+      "targetNotAuthorized": "当前目标 Agent 还未完成用户授权，暂时不能以人类身份发起私聊。"
+    },
+    "notices": {
+      "authCompleted": "已完成 {agent} 的用户授权，可以继续发送文件与指令。",
+      "saved": "已保存 {name}",
+      "sent": "已把 {file} 和指令发送给 {agent}",
+      "popupBlocked": "授权链接已生成，但浏览器拦截了新窗口，请允许弹窗后重试。",
+      "authOpened": "已打开 {agent} 的飞书授权页，完成后这里会自动刷新状态。",
+      "authConnected": "已连接 {agent} 的用户私聊授权。"
+    },
+    "collaboration": {
+      "authMessageUnavailable": "暂未接入用户凭证派发。",
+      "eyebrow": "派发文件协作",
+      "heading": "发送到可安排的 Agent 飞书会话",
+      "description": "后端会发送一条文本指令，并附带当前文件原件作为附件。",
+      "currentFileLabel": "当前文件",
+      "targetsLabel": "可安排的 Agent",
+      "loadingTargets": "正在加载 Agent 列表...",
+      "status": {
+        "authorized": "已接入用户私聊",
+        "pending": "待连接用户授权",
+        "missingCallback": "缺少公网回调",
+        "comingSoon": "后续接入"
+      },
+      "currentSelection": "当前选择",
+      "authorizedUser": "已连接用户：{user}",
+      "currentUser": "当前用户",
+      "instructionLabel": "指令内容",
+      "instructionPlaceholder": "例如：请基于这个文件，优化心智设定结构、统一语气，并直接回传修改建议。",
+      "payloadTitle": "发送内容：",
+      "payloadLine1": "1. 文本消息：你的处理指令",
+      "payloadLine2": "2. 文件附件：当前文件原件",
+      "payloadLine3": "3. 当前阶段仅对 HR 开放“人类用户身份私聊”发送，其他 Agent 后续分批接入。",
+      "currentTarget": "当前目标：{name}",
+      "selectTarget": "请先选择一个目标 Agent",
+      "startingAuth": "打开授权中",
+      "startAuth": "连接 HR 授权",
+      "sending": "发送中",
+      "sendToChat": "发送到用户私聊"
+    }
+  },
+  "workspacePreview": {
+    "loadingPdf": "正在加载 PDF 预览器...",
+    "loadingMedia": "正在加载媒体播放器...",
+    "text": {
+      "empty": "这个文本文件当前没有可显示内容。"
+    },
+    "actions": {
+      "zoom": "放大查看",
+      "downloadOriginal": "下载原件",
+      "openNewWindow": "新窗口打开"
+    },
+    "office": {
+      "noConverterTitle": "Office 文档当前还没有可用的 PDF 转换器",
+      "noConverterDesc": "服务端需要安装 `soffice/libreoffice` 后，才能把文档转换成 PDF 供网页内预览。当前仍可下载原件，或派给其他 Agent 处理。"
+    },
+    "unsupported": "这个文件暂时没有内建预览器，当前支持图片、视频、音频、代码、文本、PDF 与 Office 转 PDF 预览。",
+    "code": {
+      "loading": "正在加载代码高亮...",
+      "error": "代码高亮加载失败，已降级为纯文本预览：{error}"
+    },
+    "pdf": {
+      "title": "PDF 预览",
+      "prev": "上一页",
+      "next": "下一页",
+      "pageStatus": "第 {current} / {total} 页",
+      "loading": "正在加载 PDF...",
+      "error": "PDF 预览失败：{error}",
+      "openFailed": "无法打开文件"
+    }
+  },
+  "nodeConnectivity": {
+    "title": "连接设置",
+    "description": "把本地节点接进控制平面后，后续工作区和 Agent 数据才会真正与节点联动。",
+    "stats": {
+      "countLabel": "当前节点数"
+    },
+    "actions": {
+      "createNode": "新增节点",
+      "hideCreate": "收起新增节点",
+      "refresh": "刷新状态",
+      "refreshing": "刷新中...",
+      "rotateToken": "轮换 token",
+      "rotating": "轮换中...",
+      "copyCommand": "复制接入命令",
+      "creating": "创建中..."
+    },
+    "copy": {
+      "commandLabel": "接入命令",
+      "success": "{label}已复制",
+      "failed": "复制{label}失败，请手动复制"
+    },
+    "create": {
+      "title": "新增节点",
+      "description": "节点页保留的是高级入口。你也可以去首页，用更简化的本地接入向导。",
+      "nameLabel": "节点名称",
+      "namePlaceholder": "例如：我的本地工作机",
+      "typeLabel": "节点类型",
+      "rootLabel": "OpenClaw 根目录",
+      "hint": "创建后会选中该节点；如果你需要新命令，可以直接复制或轮换 token。"
+    },
+    "empty": {
+      "title": "还没有任何节点",
+      "description": "点上面的“新增节点”开始登记，或者去首页使用更简化的本地接入引导。"
+    },
+    "list": {
+      "title": "已有节点",
+      "description": "左侧负责切换节点，右侧查看当前选中节点的完整详情。"
+    },
+    "tokenSuffix": "token 尾号 {suffix}",
+    "fields": {
+      "status": "状态",
+      "hostname": "主机名",
+      "platform": "平台",
+      "lastHeartbeat": "最后心跳",
+      "expectedRoot": "预期 OpenClaw 根目录",
+      "reportedRoot": "节点实际上报目录",
+      "connectorVersion": "Connector 版本"
+    },
+    "placeholders": {
+      "notConnected": "未连接",
+      "notReported": "未上报"
+    },
+    "sections": {
+      "directories": "目录信息",
+      "command": "当前接入命令"
+    },
+    "command": {
+      "hint": "这里始终针对当前选中的节点。若你还没有新命令，先点击上面的“轮换 token”。",
+      "ready": "这是当前选中节点最新生成的接入命令，直接复制到目标机器执行即可。",
+      "pending": "当前还没有这个节点的新命令。点击上面的“轮换 token”后，这里会直接切到该节点的最新接入命令。",
+      "unavailable": "当前环境暂不支持直接生成该节点的接入命令。"
+    },
+    "status": {
+      "online": "在线",
+      "pending": "待接入",
+      "offline": "离线"
+    },
+    "nodeTypes": {
+      "linux": "Linux 主机",
+      "macos": "macOS 主机"
+    },
+    "errors": {
+      "refreshFailed": "刷新节点状态失败",
+      "createFailed": "创建节点失败",
+      "rotateFailed": "轮换 token 失败"
+    }
+  },
+  "login": {
+    "title": "管理员登录",
+    "description": "使用本地账号登录 ClawPilot 管理后台。",
+    "form": {
+      "username": "用户名",
+      "password": "密码"
+    },
+    "actions": {
+      "login": "登录",
+      "loggingIn": "登录中..."
+    },
+    "errors": {
+      "loginFailed": "登录失败",
+      "bootstrapFailed": "读取初始化账号失败"
+    },
+    "bootstrap": {
+      "title": "初始化管理员",
+      "description": "首次初始化后可获取默认管理员账号与临时密码。",
+      "revealed": "账号：{username}，临时密码：{password}",
+      "alreadyRevealed": "账号：{username}。这组临时密码已于 {revealedAt} 展示过一次，当前不能再次查看。",
+      "hint": "点击下方按钮获取初始化账号密码（仅展示一次）。",
+      "unknownTime": "更早之前",
+      "loading": "读取中...",
+      "action": "获取初始化账号密码"
+    }
+  },
+  "password": {
+    "title": "修改密码",
+    "description": "首次登录请修改临时密码，确保账号安全。",
+    "form": {
+      "current": "当前密码",
+      "new": "新密码",
+      "confirm": "确认新密码"
+    },
+    "actions": {
+      "showPassword": "显示密码",
+      "hidePassword": "隐藏密码",
+      "submit": "更新密码",
+      "submitting": "提交中..."
+    },
+    "errors": {
+      "currentRequired": "请输入当前密码",
+      "currentInvalid": "当前密码不正确",
+      "mismatch": "新密码两次输入不一致",
+      "minLength": "新密码至少需要 {min} 个字符",
+      "updateFailed": "修改密码失败"
+    },
+    "notices": {
+      "updated": "密码修改成功，请重新进入员工管理。"
+    }
+  },
+  "accounts": {
+    "title": "员工管理",
+    "subtitle": "先查看员工列表，再对单个员工执行账号与权限治理。",
+    "rolePlaceholder": "请选择角色",
+    "states": {
+      "requireLogin": "请先登录后再进入员工管理。",
+      "loading": "正在加载账号数据...",
+      "loadingHint": "请稍候。"
+    },
+    "actions": {
+      "logout": "退出登录",
+      "goLogin": "前往登录",
+      "processing": "处理中...",
+      "addEmployee": "新增员工",
+      "assignAccess": "分配权限",
+      "saveAccess": "保存权限",
+      "disable": "禁用",
+      "enable": "启用",
+      "resetPassword": "重置密码",
+      "forceLogout": "强制登出",
+      "delete": "删除"
+    },
+    "errors": {
+      "loadFailed": "读取账号数据失败",
+      "inviteFailed": "邀请失败",
+      "actionFailed": "操作失败",
+      "updateRoleFailed": "更新角色失败",
+      "savePermissionsFailed": "保存权限失败",
+      "accessLoadFailed": "读取员工权限失败",
+      "accessSaveFailed": "保存员工权限失败"
+    },
+    "notices": {
+      "created": "已创建账号 {username}，临时密码：{password}",
+      "resetPassword": "账号 {username} 的临时密码：{password}",
+      "accessUpdated": "已更新 {username} 的权限配置。"
+    },
+    "invite": {
+      "title": "新增员工",
+      "description": "创建员工账号并生成临时密码，员工首次登录后需修改。",
+      "form": {
+        "username": "用户名",
+        "displayName": "显示名",
+        "email": "邮箱（可选）",
+        "role": "角色"
+      },
+      "actions": {
+        "submit": "创建员工并生成临时密码"
+      }
+    },
+    "list": {
+      "title": "员工列表",
+      "description": "包含管理员在内的全部员工，可直接执行账号和权限操作。",
+      "table": {
+        "account": "员工",
+        "role": "角色",
+        "status": "状态",
+        "lastLogin": "最近登录",
+        "actions": "操作"
+      }
+    },
+    "status": {
+      "active": "启用",
+      "disabled": "禁用"
+    },
+    "access": {
+      "title": "分配权限：{name}",
+      "description": "先选择角色，再按需补充角色之外的额外权限。",
+      "loading": "正在加载员工权限配置...",
+      "roleLabel": "角色",
+      "summaryTitle": "权限摘要",
+      "summaryRole": "角色继承权限 {count} 项",
+      "summaryManual": "手动附加权限 {count} 项",
+      "summaryEffective": "最终有效权限 {count} 项",
+      "inheritedTitle": "角色继承权限",
+      "inheritedHint": "这些权限已经被所选角色占用，默认锁定且不可取消。",
+      "manualTitle": "手动附加权限",
+      "manualHint": "这里只能操作角色之外的额外权限。",
+      "emptyInherited": "当前角色还没有继承权限。",
+      "emptyManual": "当前没有可额外附加的权限。",
+      "roleLocked": "角色继承"
+    },
+    "audit": {
+      "title": "审计日志",
+      "description": "最近 200 条系统操作审计。",
+      "table": {
+        "time": "时间",
+        "action": "动作",
+        "target": "目标",
+        "detail": "详情"
+      }
+    }
+  },
+  "rolesPage": {
+    "title": "角色管理",
+    "subtitle": "维护角色模板、角色权限以及角色影响范围。",
+    "states": {
+      "requireLogin": "请先登录后再进入角色管理。",
+      "loading": "正在加载角色数据...",
+      "loadingHint": "请稍候。"
+    },
+    "actions": {
+      "addRole": "新增角色",
+      "editRole": "编辑权限",
+      "deleteRole": "删除角色"
+    },
+    "errors": {
+      "loadFailed": "读取角色数据失败",
+      "saveFailed": "保存角色失败",
+      "deleteFailed": "删除角色失败"
+    },
+    "notices": {
+      "created": "已创建角色：{name}",
+      "updated": "已更新角色：{name}",
+      "deleted": "已删除角色：{name}"
+    },
+    "types": {
+      "system": "系统角色",
+      "custom": "自定义角色"
+    },
+    "list": {
+      "title": "角色列表",
+      "description": "集中查看角色模板、权限规模和绑定人数。",
+      "table": {
+        "role": "角色",
+        "type": "类型",
+        "permissionCount": "权限数",
+        "memberCount": "绑定人数",
+        "actions": "操作"
+      }
+    },
+    "editor": {
+      "createTitle": "新增角色",
+      "editTitle": "编辑角色：{name}",
+      "description": "维护角色名称、描述和角色权限。",
+      "impactHint": "当前角色已绑定 {count} 名员工，保存后会立即影响这些员工的继承权限。",
+      "permissionsTitle": "角色权限",
+      "permissionsHint": "这里维护角色模板本身的权限集合。",
+      "form": {
+        "name": "角色名称",
+        "description": "角色描述"
+      }
+    }
+  },
+  "multiAgent": {
+    "listSeparator": "、",
+    "header": {
+      "title": "多 Agent 设置",
+      "subtitle": "先选择负责入职的 Agent，再进入双弹窗流程。"
+    },
+    "states": {
+      "loadingOptions": "正在加载可用 Agent 与群组选项..."
+    },
+    "owners": {
+      "title": "负责人卡片墙",
+      "columnHint": "每行 6 个"
+    },
+    "runs": {
+      "title": "入职进度卡片",
+      "ownerLabel": "负责人：{owner}"
+    },
+    "form": {
+      "ownerEyebrow": "负责人",
+      "title": "新建 Agent 表单",
+      "agentIdLabel": "agent-id",
+      "agentIdPlaceholder": "security-research",
+      "agentNameLabel": "agent-name",
+      "agentNamePlaceholder": "安全研究员",
+      "roleSummaryLabel": "role-summary",
+      "roleSummaryPlaceholder": "负责安全测试与风险预警",
+      "coreWorkLabel": "core-work",
+      "coreWorkPlaceholder": "核心工作 {index}",
+      "addCoreWork": "添加核心工作",
+      "channelLabel": "渠道类型",
+      "channelHint": "其他渠道预留",
+      "appIdLabel": "appId",
+      "appSecretLabel": "appSecret",
+      "operatorOpenIdLabel": "operator open_id",
+      "identityKeyLabel": "identity-key",
+      "feishuLoginHint": "需先登录飞书开放平台"
+    },
+    "persona": {
+      "strategyLabel": "人设生成策略",
+      "templateOnly": "仅脚手架",
+      "agentAssisted": "Agent 补写",
+      "docsLabel": "补写文档",
+      "writerLabel": "补写 Agent"
+    },
+    "groups": {
+      "title": "自动加群",
+      "enable": "启用",
+      "mentionRequired": "@必提及",
+      "mentionOptional": "@可选",
+      "manualChatId": "手动 chat_id",
+      "disabledHint": "关闭后将跳过加群步骤"
+    },
+    "execution": {
+      "title": "执行策略",
+      "restartGateway": "执行后重启 gateway"
+    },
+    "dryRun": {
+      "title": "Dry-run 预览"
+    },
+    "progress": {
+      "eyebrow": "步骤进度",
+      "ownerLabel": "负责人：{owner}",
+      "pendingRestart": "gateway 尚未重启，@ 路由可能未完全生效。",
+      "stepCount": "进度 {completed}/{total}"
+    },
+    "actions": {
+      "refresh": "刷新",
+      "creating": "创建中...",
+      "startAutoCreate": "开始创建",
+      "openFeishuChat": "立即打开飞书对话",
+      "cancel": "取消",
+      "running": "执行中...",
+      "runDryRun": "执行 dry-run",
+      "onboarding": "入职中...",
+      "start": "开始入职",
+      "closeLater": "关闭稍后继续",
+      "resume": "继续执行"
+    },
+    "errors": {
+      "loadFailed": "加载失败",
+      "refreshFailed": "刷新失败",
+      "dryRunFailed": "dry-run 执行失败",
+      "missingFields": "请先补齐：{fields}",
+      "noOwner": "未选择负责人 Agent",
+      "feishuLoginRequired": "未检测到飞书登录态，请先登录飞书开放平台后重试",
+      "dependencyMissing": "缺少 UI 自动化依赖",
+      "autoCreateFailed": "自动化创建失败",
+      "startFailed": "启动失败",
+      "resumeFailed": "续跑失败"
+    },
+    "notices": {
+      "autoCreateStarting": "已获取凭证，开始执行入职流程...",
+      "autoCreateCompleted": "已完成自动创建并刷新 Agent 列表"
+    },
+    "autoCreate": {
+      "appDescription": "第一只小龙虾，负责统管所有业务",
+      "menuName": "/status 状态"
+    }
+  },
+  "rescueCenter": {
+    "title": "救援中心",
+    "subtitle": "左侧维护 Codex 线程台账，右侧在固定的 `~/.openclaw` 工作台里持续对话。",
+    "shellBadge": "Rescue Center Workbench",
+    "loading": "正在连接本地 Codex 救援桥…",
+    "newThread": "新线程",
+    "resumeThread": "恢复线程",
+    "resetThreads": "清空台账",
+    "refresh": "刷新",
+    "threadListTitle": "Thread Rail",
+    "threadListHint": "多个 rescue thread 话题会固定留存在左侧。",
+    "threadListEmpty": "当前还没有 rescue thread。先新建一个线程，再把问题直接发给本地 Codex。",
+    "threadUntitled": "新救援线程",
+    "threadEmpty": "等待第一条上下文消息",
+    "statusTile": {
+      "title": "环境状态",
+      "ready": "环境已就绪",
+      "blocked": "存在阻塞项",
+      "codex": "Codex",
+      "auth": "认证",
+      "root": "固定目录",
+      "threads": "线程数",
+      "authLoggedIn": "已登录",
+      "authMissing": "未登录",
+      "authUnknown": "待确认"
+    },
+    "guidance": {
+      "title": "安装 / 登录引导",
+      "install": "安装命令",
+      "login": "登录命令",
+      "status": "登录检测",
+      "root": "固定目录",
+      "docs": "CLI 文档",
+      "authDocs": "认证文档"
+    },
+    "bootstrapError": {
+      "eyebrow": "Bootstrap Error",
+      "title": "救援中心接口未就绪",
+      "description": "当前页面没有拿到 rescue bootstrap 数据。这类情况通常不是 Codex CLI 未安装，而是 8088 后端还没加载最新的 rescue-center 路由，或者接口暂时不可达。",
+      "messageLabel": "接口返回",
+      "restartHint": "先重启 8088 后端，再刷新本页。",
+      "panelTitle": "排查信息",
+      "endpointLabel": "Bootstrap 接口",
+      "backendLabel": "后端地址",
+      "rootLabel": "固定工作目录",
+      "routeMissing": "救援中心后端路由未加载，请重启 8088 后端服务。",
+      "backendUnavailable": "救援中心后端暂时不可用，请确认 8088 服务已经启动。"
+    },
+    "canvas": {
+      "transcriptLabel": "Conversation Canvas",
+      "emptyEyebrow": "Start Rescue",
+      "emptyTitle": "开始构建本地救援线程",
+      "emptyDescription": "线程会固定运行在 `~/.openclaw`；先创建一个 rescue thread，或者直接在底部输入框里把问题发给本地 Codex。",
+      "threadId": "Thread ID",
+      "lastReply": "最后回复",
+      "noReplyYet": "暂无回复"
+    },
+    "composer": {
+      "placeholder": "把部署环境里的问题、日志、修复目标直接发给本地 Codex…",
+      "hintReady": "消息会通过后端 bridge 发送给本地 codex app-server，并强制锁定在 `~/.openclaw`。",
+      "hintBlocked": "当前环境还没有满足 rescue bridge 的运行条件。",
+      "send": "发送",
+      "sending": "发送中...",
+      "restart": "重开线程"
+    },
+    "status": {
+      "active": "active",
+      "idle": "idle",
+      "failed": "failed",
+      "blocked": "blocked",
+      "archived": "archived"
+    },
+    "runtime": {
+      "idle": "运行稳定",
+      "awaitingEvents": "等待 Codex 事件完成当前轮次",
+      "recovering": "正在重建 bridge 并恢复线程",
+      "recovered": "线程已自动恢复，可继续对话",
+      "failed": "运行时失败",
+      "blocked": "运行被阻断",
+      "lastEvent": "最近事件",
+      "turnId": "当前 Turn",
+      "freshTransport": "本页已重新接回本地 app-server",
+      "autoRecovered": "本轮对话经历过自动恢复"
+    },
+    "messages": {
+      "user": "User",
+      "assistant": "Codex",
+      "system": "System"
+    },
+    "advanced": {
+      "title": "高级模式",
+      "transport": "前端传输模式",
+      "budget": "性能预算",
+      "latency": "最近时延",
+      "cache": "缓存命中",
+      "empty": "当前还没有可展示的诊断数据。"
+    }
+  },
+  "common": {
+    "add": "添加",
+    "cancel": "取消",
+    "close": "关闭",
+    "copy": "复制",
+    "copyPath": "复制路径",
+    "none": "无",
+    "notFound": "未找到",
+    "unknown": "未知",
+    "placeholder": "--",
+    "refresh": "刷新",
+    "refreshing": "刷新中",
+    "save": "保存",
+    "saving": "保存中",
+    "submitting": "提交中",
+    "notRecorded": "未记录",
+    "unknownTime": "未知时间",
+    "clearAll": "清除全部",
+    "platforms": {
+      "feishu": "飞书",
+      "openclaw": "OpenClaw",
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "weixin": "微信",
+      "unknown": "未知"
+    }
+  },
+  "api": {
+    "requestFailed": "请求失败",
+    "requestInvalid": "请求参数不合法，请检查输入内容",
+    "unreachable": "无法连接到 API：{url}（{reason}）",
+    "exportPackageFailed": "导出数据包失败"
+  },
+  "time": {
+    "units": {
+      "second": "秒",
+      "minute": "分钟",
+      "hour": "小时",
+      "day": "天",
+      "month": "月",
+      "year": "年"
+    }
+  },
+  "schedule": {
+    "everyInterval": "每 {value} {unit}",
+    "singleAt": "单次 · {time}",
+    "single": "单次执行",
+    "cron": "Cron 表达式",
+    "delivery": {
+      "internal": "内部执行"
+    },
+    "deliveryModes": {
+      "feishu": {
+        "loopAt": "群聊循环 @",
+        "fixedTopic": "固定话题",
+        "privateMessage": "私聊消息"
+      },
+      "openclaw": {
+        "notice": "工区通知"
+      },
+      "telegram": {
+        "privateMessage": "私聊消息"
+      },
+      "internal": {
+        "turn": "Agent 内部执行"
+      }
+    }
+  },
+  "scheduleEditor": {
+    "modes": {
+      "interval": "固定间隔",
+      "daily": "每天",
+      "monthly": "每月",
+      "yearly": "每年",
+      "once": "仅一次",
+      "cron": "自定义",
+      "default": "调度"
+    },
+    "errors": {
+      "nameRequired": "请填写任务名称",
+      "contentRequired": "请输入任务指令",
+      "invalidTime": "请填写有效时间，例如 09:30",
+      "dayRange": "{label}需要在 1 到 31 之间",
+      "monthRange": "月份需要在 1 到 12 之间",
+      "monthDayInvalid": "月份和日期组合无效",
+      "intervalInvalid": "请填写有效的间隔值",
+      "onceRequired": "请选择执行时间",
+      "cronRequired": "请填写 Cron 表达式"
+    },
+    "labels": {
+      "executeTime": "多久执行一次",
+      "every": "每",
+      "dailyHint": "每天在指定时间自动执行",
+      "monthlyDay": "每月几号",
+      "yearlyDay": "每年几号",
+      "executeAt": "执行时间",
+      "month": "月份",
+      "day": "日期",
+      "onceTime": "选择执行时间",
+      "cronHint": "使用 Cron 表达式设置复杂的执行规则"
+    },
+    "placeholders": {
+      "cron": "0 9 * * 1-5"
+    },
+    "fields": {
+      "name": "任务名称",
+      "namePlaceholder": "例如：日报提醒",
+      "description": "备注说明（可选）",
+      "descriptionPlaceholder": "简要描述这条任务的用途"
+    },
+    "content": {
+      "title": "任务指令"
+    }
+  },
+  "weixinBridge": {
+    "title": "微信 Bridge",
+    "description": "启动 Bridge 后，微信消息将通过独立进程直接处理，支持文本和媒体消息。启动后 OpenClaw 微信插件会自动暂停以避免冲突。",
+    "status": {
+      "running": "运行中 · {uptime}",
+      "stopped": "已停止"
+    },
+    "actions": {
+      "start": "启动",
+      "starting": "启动中…",
+      "stop": "停止",
+      "stopping": "停止中…"
+    },
+    "errors": {
+      "startFailed": "启动微信 Bridge 失败",
+      "stopFailed": "停止微信 Bridge 失败"
+    }
+  },
+  "deliveryEditor": {
+    "channels": {
+      "internal": {
+        "label": "仅内部执行",
+        "description": "Agent 自行处理任务，不发送消息到外部"
+      },
+      "feishu": {
+        "label": "飞书",
+        "description": "将结果发送到飞书私聊或群组"
+      },
+      "openclaw": {
+        "label": "OpenClaw",
+        "description": "发送到 OpenClaw 工区通知"
+      },
+      "telegram": {
+        "label": "Telegram",
+        "description": "发送到 Telegram 对话"
+      },
+      "weixin": {
+        "label": "微信",
+        "description": "发送到微信私聊（需先建立会话）"
+      }
+    },
+    "feishuModes": {
+      "private": {
+        "label": "私聊消息",
+        "description": "一对一发送给指定的飞书用户"
+      },
+      "loop": {
+        "label": "群聊消息",
+        "description": "发送到群组并自动 @指定成员"
+      },
+      "fixed": {
+        "label": "固定话题",
+        "description": "在指定话题下持续回复更新"
+      }
+    },
+    "openclawModes": {
+      "workspaceNotice": "工区通知"
+    },
+    "telegramModes": {
+      "private": "私聊消息"
+    },
+    "weixinModes": {
+      "private": "私聊消息"
+    },
+    "bootstrapScopes": {
+      "auto": "自动",
+      "local": "本地",
+      "remote": "远程"
+    },
+    "templateKinds": {
+      "plainText": "纯文本",
+      "feishuCard": "飞书卡片"
+    },
+    "templateAccents": {
+      "blue": "蓝",
+      "green": "绿",
+      "orange": "橙",
+      "red": "红",
+      "slate": "灰"
+    },
+    "defaults": {
+      "footer": "由 ClawPilot 自动同步"
+    },
+    "notices": {
+      "openclaw": "当前版本会先把 OpenClaw 发送配置和模板骨架同步到 .openclaw，执行器接口预留到下一轮接通。",
+      "telegram": "当前版本会先把 Telegram 发送配置和模板骨架保存进定时任务模型，真实发送链路后续接入。",
+      "weixin": "微信渠道当前仅支持纯文本投递，媒体消息将在 Phase 2 支持。",
+      "weixinContextToken": "微信渠道需要用户先发送消息建立会话后才能投递，否则消息将无法送达。"
+    },
+    "errors": {
+      "feishuPrivateReceiveId": "私聊消息需要填写飞书用户 ID",
+      "feishuGroupChatId": "群聊消息需要填写群组 ID",
+      "feishuFixedTopicRootId": "固定话题需要填写话题根消息 ID"
+    },
+    "preview": {
+      "defaultTitle": "消息标题",
+      "defaultSummary": "卡片摘要",
+      "defaultBody": "这里预览飞书卡片正文内容。",
+      "defaultFooter": "由 ClawPilot 自动同步",
+      "plainTitle": "文本消息预览",
+      "cardTitle": "飞书卡片预览",
+      "modes": {
+        "private": "私聊",
+        "fixed": "固定话题",
+        "loop": "群聊循环"
+      },
+      "senderLabel": "ClawPilot / Feishu Delivery"
+    },
+    "labels": {
+      "channel": "结果发送到",
+      "feishuMode": "飞书发送方式",
+      "openclawMode": "OpenClaw 方式",
+      "telegramMode": "Telegram 方式",
+      "weixinMode": "微信方式"
+    },
+    "fields": {
+      "receiveId": "飞书用户 ID",
+      "receiveIdType": "ID 类型",
+      "chatId": "群组 ID",
+      "mentions": "需要 @的成员（多个用逗号分隔）",
+      "mentionsHint": "系统会自动管理话题关联，无需手动设置。",
+      "rootMessageId": "话题根消息 ID",
+      "rootMessageHint": "用于绑定特定话题，首次同步后系统自动记录。"
+    },
+    "bootstrap": {
+      "title": "自动同步配置",
+      "description": "保存时自动同步配置文件，确保各端信息一致。",
+      "enabled": "已开启",
+      "disabled": "已关闭",
+      "statusLabel": "当前状态：",
+      "syncedRootLabel": "同步目录：",
+      "filesLabel": "文件："
+    },
+    "template": {
+      "title": "消息样式",
+      "description": "自定义消息卡片的外观和内容结构",
+      "fields": {
+        "title": "标题",
+        "summary": "摘要",
+        "body": "正文内容",
+        "footer": "底部说明",
+        "accent": "主题色"
+      },
+      "placeholders": {
+        "title": "例如：日报提醒",
+        "summary": "一句话概括消息要点",
+        "body": "消息的主要内容，支持多行文本",
+        "footer": "例如：由 ClawPilot 自动同步"
+      },
+      "showSender": "显示来源标识",
+      "hideSender": "隐藏来源标识",
+      "guidance": "建议：标题简洁明了，摘要一行概括，正文控制在 3 个要点以内"
+    }
+  },
+  "language": {
+    "title": "系统语言"
+  },
+  "activity": {
+    "header": {
+      "kicker": "活动时间线",
+      "title": "{name} 最近活动",
+      "subtitle": "按时间顺序查看用户、Agent、工具和系统事件。"
+    },
+    "filters": {
+      "all": "全部",
+      "user": "用户",
+      "assistant": "Agent",
+      "scheduledJob": "定时任务",
+      "tool": "工具",
+      "system": "系统"
+    },
+    "searchPlaceholder": "搜索标题、定时任务、详情、角色或时间",
+    "loading": "正在读取活动日志...",
+    "empty": "当前筛选条件下没有匹配的活动记录。",
+    "detailEmpty": "此条记录没有详情。",
+    "errors": {
+      "loadFailed": "读取活动日志失败：{error}"
+    },
+    "session": {
+      "recent": "最近会话",
+      "updated": "最近更新时间",
+      "file": "会话文件"
+    }
+  },
+  "agentCard": {
+    "actions": {
+      "activity": "查看活动时间线",
+      "export": "导出便携包",
+      "remove": "移除",
+      "schedules": "查看定时任务",
+      "skills": "查看 Skills",
+      "workspace": "打开工作区"
+    },
+    "lastActive": {
+      "daysAgo": "{count} 天前活跃",
+      "hoursAgo": "{count} 小时前活跃",
+      "inactive": "暂无活动",
+      "justNow": "刚刚活跃",
+      "minutesAgo": "{count} 分钟前活跃",
+      "monthsAgo": "{count} 个月前活跃"
+    },
+    "model": {
+      "currentLabel": "当前模型",
+      "noRecord": "暂无记录",
+      "pending": "待同步",
+      "recentLabel": "最近使用"
+    },
+    "presets": {
+      "bearLobster": "熊小虾",
+      "catLobster": "猫小虾",
+      "focus": "专注预设",
+      "lobster": "小龙虾",
+      "standard": "标准预设",
+      "title": "查看场景预设"
+    },
+    "roleFallback": "暂未填写角色摘要",
+    "roleLabel": "角色摘要",
+    "removeDialog": {
+      "eyebrow": "移除 Agent",
+      "title": "移除 {name}",
+      "description": "这会把当前 Agent 从列表和 openclaw 配置中移除，但不会删除工作区文件，也会保留历史任务与训练记录。Agent ID：{id}",
+      "close": "关闭移除弹窗",
+      "cancel": "取消",
+      "confirm": "确认移除",
+      "removing": "移除中",
+      "errors": {
+        "failed": "移除 Agent 失败"
+      }
+    },
+    "sceneAlt": "{name} 场景预览",
+    "spend": {
+      "costWithTokens": "{cost} · {tokens}",
+      "label": "消耗：{value}"
+    },
+    "status": {
+      "crashed": "异常",
+      "idle": "空闲",
+      "offline": "离线",
+      "working": "工作中"
+    },
+    "tokens": "{count} tokens"
+  },
+  "agentConfig": {
+    "title": "Agent 配置",
+    "tabs": {
+      "profile": "画像规划",
+      "persona": "人格配置",
+      "multiAgent": "Agent 入职"
+    },
+    "offboarding": {
+      "open": "Agent 离职",
+      "eyebrow": "Agent 离职",
+      "title": "选择需要离职的 Agent",
+      "description": "离职后，会从 Agent 列表和 openclaw 配置中移除该 Agent，但会保留历史任务与训练记录。",
+      "selected": "待离职",
+      "confirmTarget": "即将让 {name} 离职",
+      "confirm": "确认 Agent 离职",
+      "submitting": "离职中",
+      "empty": "当前没有可离职的 Agent。",
+      "idLabel": "Agent ID：{id}",
+      "errors": {
+        "failed": "Agent 离职失败"
+      }
+    },
+    "persona": {
+      "title": "人格与规则文件",
+      "subtitle": "按文件维度同时查看多个 Agent 的配置，并直接在卡片或全屏模式下编辑。"
+    },
+    "searchPlaceholder": "搜索 Agent 名称、ID 或角色",
+    "fileGroups": {
+      "official": "官方",
+      "team": "团队",
+      "custom": "自定义"
+    },
+    "addFile": "新增文件",
+    "currentFile": "当前文件：{name}",
+    "emptySearch": "没有找到匹配的 Agent。",
+    "fullscreen": "全屏编辑",
+    "fullscreenClose": "关闭全屏",
+    "missingFile": {
+      "title": "{file} 尚不存在",
+      "subtitle": "你可以先为这个 Agent 创建一份空白文件，然后再开始编辑。",
+      "create": "创建空白文件",
+      "creating": "创建中"
+    },
+    "status": {
+      "dirty": "未保存",
+      "error": "读取失败",
+      "loading": "读取中",
+      "missing": "文件缺失",
+      "synced": "已同步"
+    },
+    "errors": {
+      "createFailed": "创建文件失败",
+      "readFailed": "读取文件失败",
+      "readFallback": "请稍后重试，或检查 Agent 工作区是否可用。",
+      "saveFailed": "保存文件失败"
+    },
+    "add": {
+      "title": "新增配置文件",
+      "subtitle": "创建一个新的自定义 Markdown 文件",
+      "description": "新文件会加入自定义分组，并在每个 Agent 面板里按需创建。",
+      "fileName": "文件名",
+      "filePlaceholder": "例如：prompts/system.md",
+      "rulesPrefix": "规则：文件名必须以",
+      "rulesSuffix": "结尾，也可以包含子目录，例如",
+      "errors": {
+        "duplicate": "同名文件已存在",
+        "emptyName": "请先输入文件名",
+        "invalidName": "文件名格式无效，只支持字母、数字、点、下划线、中划线和 .md 后缀"
+      }
+    },
+    "delete": {
+      "title": "移除自定义文件",
+      "subtitle": "删除 {name}",
+      "description": "只会从前端自定义文件列表中移除这个入口，不会删除各 Agent 工作区里的实际文件。",
+      "confirm": "确认删除"
+    },
+    "deleteFile": "删除 {name}",
+    "profilePlanner": {
+      "title": "画像规划",
+      "subtitle": "为单个 Agent 规划完整的定位、职责、人格画像与行为规范。",
+      "step": {
+        "select": "选择 Agent",
+        "configure": "配置画像参数",
+        "preview": "预览与采纳",
+        "done": "完成"
+      },
+      "selectAgent": "选择要规划画像的 Agent",
+      "form": {
+        "executorAgent": "规划者 Agent",
+        "executorAgentHint": "选择一个 Agent 作为画像规划的执行者，它将通过 OpenClaw 对话能力生成画像方案",
+        "selectExecutor": "选择规划者",
+        "executorPickerHint": "点击选择一个 Agent 来执行画像规划",
+        "agentName": "岗位名称",
+        "roleSummary": "岗位职责",
+        "roleSummaryPlaceholder": "一句话描述该 Agent 的核心职责",
+        "coreWork": "核心工作",
+        "coreWorkPlaceholder": "描述一项核心工作内容",
+        "addCoreWork": "添加核心工作",
+        "minCoreWork": "至少需要 {min} 项核心工作"
+      },
+      "actions": {
+        "previewExisting": "预览现有画像",
+        "generate": "生成画像方案",
+        "generating": "生成中...",
+        "applySelected": "应用选中的文件",
+        "applying": "应用中...",
+        "selectAll": "全选",
+        "deselectAll": "取消全选",
+        "preview": "预览",
+        "diff": "差异对比",
+        "collapse": "收起",
+        "done": "完成",
+        "replan": "重新规划",
+        "back": "返回",
+        "changeAgent": "重新选择"
+      },
+      "result": {
+        "applied": "已写入",
+        "skipped": "已跳过",
+        "failed": "写入失败"
+      },
+      "existingPreview": {
+        "title": "{agent} 现有画像",
+        "empty": "该文件尚未创建",
+        "close": "关闭"
+      },
+      "newFile": "新文件",
+      "existingFile": "已有文件将被覆盖",
+      "noAgents": "没有可用的 Agent",
+      "generateError": "生成画像方案失败，请重试"
+    }
+  },
+  "exportPackage": {
+    "actions": {
+      "cancel": "取消",
+      "close": "关闭",
+      "exportZip": "导出 ZIP",
+      "exporting": "导出中"
+    },
+    "docs": {
+      "description": "这些文档会一并打包，便于迁移和恢复。",
+      "empty": "当前没有可导出的文档。",
+      "title": "文档清单"
+    },
+    "errors": {
+      "exportFailed": "导出 ZIP 失败",
+      "readFailed": "读取导出预览失败"
+    },
+    "footer": {
+      "notice": "导出的 ZIP 仅包含预览中的数据副本，不会修改当前 Agent。"
+    },
+    "header": {
+      "description": "先确认包内文档、技能、定时任务和风险提示，再导出离线 ZIP。",
+      "eyebrow": "便携包预览",
+      "title": "导出 {agent} 便携包"
+    },
+    "jobs": {
+      "description": "会导出任务配置与启用状态，方便迁移后直接恢复。",
+      "empty": "当前没有定时任务。",
+      "statusDisabled": "已停用",
+      "statusEnabled": "已启用",
+      "title": "定时任务"
+    },
+    "missing": {
+      "empty": "当前没有缺失的必备文档。",
+      "title": "缺失文档"
+    },
+    "notices": {
+      "downloadStarted": "已开始下载 {name}"
+    },
+    "overview": {
+      "items": {
+        "docs": "docs/：角色文档与说明文件",
+        "manifest": "manifest.json：导出清单与恢复入口",
+        "restore": "restore/：还原说明与目录映射",
+        "scheduledJobs": "scheduled-jobs/：定时任务配置",
+        "skills": "skills/：已挂载 Skill 副本"
+      },
+      "subtitle": "{name} · 共 {count} 个文件，预计大小 {size}",
+      "title": "打包内容"
+    },
+    "skills": {
+      "description": "按 Skill 目录汇总导出，包含文件数和总体积。",
+      "empty": "当前没有 Skill 需要导出。",
+      "files": "{count} 个文件 · {size}",
+      "title": "Skills"
+    },
+    "states": {
+      "loadingPreview": "正在生成导出预览..."
+    },
+    "summary": {
+      "docs": {
+        "detail": "缺失 {count} 项必备文档",
+        "label": "文档"
+      },
+      "jobs": {
+        "detail": "包含当前启用与停用的任务配置",
+        "label": "任务"
+      },
+      "risks": {
+        "detail": "预计压缩包大小 {size}",
+        "label": "风险"
+      },
+      "skills": {
+        "detail": "共 {count} 个 Skill 文件",
+        "label": "Skills"
+      }
+    },
+    "warnings": {
+      "empty": "当前没有风险提示。",
+      "title": "导出提醒"
+    }
+  },
+  "scenePresets": {
+    "actions": {
+      "applying": "应用中",
+      "close": "关闭",
+      "select": "选择",
+      "selected": "已选中"
+    },
+    "description": "对比不同预设在四种运行状态下的场景素材，并将所选预设应用到当前 Agent。",
+    "eyebrow": "场景预设",
+    "errors": {
+      "updateFailed": "应用场景预设失败"
+    },
+    "note": "以下为该预设下四种状态的循环素材。",
+    "stories": {
+      "bearLobster": "熊小虾替小龙虾稳住后场",
+      "catLobster": "猫小虾陪小龙虾盯紧节奏",
+      "lobster": "小龙虾坐镇工位带队开工"
+    },
+    "title": "场景预设库"
+  },
+  "openclaw": {
+    "actions": {
+      "back": "返回上级",
+      "copyPathFailed": "复制路径失败",
+      "copyPathSuccess": "已复制路径：{path}",
+      "download": "下载原件",
+      "jumpWorkspace": "打开 {agentId} 工作区",
+      "reload": "重新读取",
+      "reloadLoading": "重新读取中"
+    },
+    "currentDirectoryLabel": "当前目录",
+    "detail": {
+      "currentPath": "当前路径",
+      "emptySubtitle": "先从中间列表选择一个文件，即可在这里查看详情与预览。",
+      "emptyTitle": "还未选择文件",
+      "fileTitle": "文件详情"
+    },
+    "emptyDirectory": "当前目录下没有匹配项。",
+    "filter": {
+      "placeholder": "按名称或路径筛选"
+    },
+    "header": {
+      "currentDirectory": "当前目录：{name}",
+      "kicker": "系统资料库",
+      "subtitle": "浏览 {path} 下的配置、日志、技能与工作区资料，当前为只读模式。",
+      "title": "系统资料库"
+    },
+    "kinds": {
+      "archive": "压缩包",
+      "audio": "音频",
+      "code": "代码",
+      "directory": "目录",
+      "document": "文档",
+      "file": "文件",
+      "image": "图片",
+      "pdf": "PDF",
+      "text": "文本",
+      "video": "视频"
+    },
+    "loadedCount": "已加载 {count} 个目录",
+    "previewOnly": "仅文件信息",
+    "previewUnavailable": "当前文件不支持在线预览，只能查看元信息或下载原件。",
+    "previewable": "可预览",
+    "readOnly": "只读浏览",
+    "top": {
+      "agents": {
+        "description": "查看 Agents 目录及其运行时衍生文件。",
+        "label": "Agents"
+      },
+      "config": {
+        "description": "OpenClaw 的核心配置文件和环境设置。",
+        "label": "配置"
+      },
+      "cron": {
+        "description": "定时任务与调度相关目录。",
+        "label": "Cron"
+      },
+      "default": {
+        "description": "其他未归类的 OpenClaw 根目录内容。",
+        "label": "其他"
+      },
+      "delivery": {
+        "description": "待发送文件和消息的投递队列。",
+        "label": "投递队列"
+      },
+      "logs": {
+        "description": "运行日志、排障记录和执行输出。",
+        "label": "日志"
+      },
+      "root": {
+        "description": "整个 .openclaw 根目录的入口视图。",
+        "label": "根目录"
+      },
+      "skills": {
+        "description": "Skills 与 Agent 扩展目录。",
+        "label": "技能"
+      },
+      "workspace": {
+        "description": "Agent 工作区和工作区衍生目录。",
+        "label": "工作区"
+      }
+    },
+    "tree": {
+      "collapse": "收起 {name}",
+      "expand": "展开 {name}",
+      "loadingRoot": "正在加载根目录...",
+      "subtitle": "按需展开系统资料目录",
+      "title": "目录树"
+    }
+  },
+  "systemSettings": {
+    "currency": {
+      "cny": "人民币 CNY",
+      "currentSource": "当前来源：{source}",
+      "description": "切换成本显示币种，并查看 USD/CNY 汇率来源与更新时间。",
+      "lastCheck": "最近检查：{time}",
+      "lastUpdate": "最近更新",
+      "rateLabel": "USD/CNY 汇率",
+      "rateValue": "1 USD = {rate} CNY",
+      "refresh": "刷新汇率",
+      "title": "币种与汇率",
+      "usd": "美元 USD"
+    },
+    "errors": {
+      "updateGatewayFailed": "保存公网访问配置失败",
+      "applyGatewayFailed": "应用公网配置失败",
+      "readFailed": "读取系统设置失败",
+      "refreshRateFailed": "刷新汇率失败",
+      "updateCurrencyFailed": "更新币种偏好失败",
+      "updateStatusFailed": "更新状态别名失败"
+    },
+    "gateway": {
+      "title": "公网访问",
+      "description": "默认保留公网 IP + 端口作为备用入口；保存后系统会立即应用配置，配置域名后可自动启用正式 HTTPS 入口。",
+      "backupEntryTitle": "备用入口",
+      "backupEntryDescription": "默认保留 IP + 端口访问，适合初始化、排障和回退。",
+      "primaryEntryTitle": "正式入口",
+      "primaryEntryDescription": "配置域名后，系统会自动开启 HTTPS，并把它作为正式入口。",
+      "domainLabel": "域名",
+      "domainPlaceholder": "ops.example.com",
+      "publicHostIpLabel": "公网 IP",
+      "publicHostIpPlaceholder": "107.175.190.120",
+      "publicPortLabel": "公网端口",
+      "autoHttpsLabel": "自动开启 HTTPS",
+      "save": "保存入口配置",
+      "applying": "应用中...",
+      "saved": "公网入口配置已保存",
+      "httpsEnabled": "域名 HTTPS 已自动开启",
+      "sslEmailPrompt": "当前环境要求登记 SSL 邮箱。请输入用于 ACME 注册的联系邮箱：",
+      "sslEmailRequired": "请先输入 SSL 邮箱后再继续应用。",
+      "statusLabel": "当前配置状态",
+      "currentBackupUrlLabel": "备用入口地址",
+      "currentPrimaryUrlLabel": "正式入口地址",
+      "currentAccessUrlLabel": "访问地址",
+      "jobStatusLabel": "执行状态",
+      "statusValues": {
+        "idle": "未配置",
+        "saved": "已保存配置",
+        "error": "配置错误"
+      },
+      "jobValues": {
+        "accepted": "已受理",
+        "running": "执行中",
+        "completed": "已完成",
+        "failed": "失败"
+      }
+    },
+    "rateRefreshed": "汇率已刷新：1 USD = {rate} CNY（来源：{source}）",
+    "rateSources": {
+      "fixed": "固定默认值",
+      "frankfurter": "Frankfurter",
+      "ecb": "欧洲央行 ECB"
+    },
+    "status": {
+      "description": "自定义工作中、空闲、离线、异常四种运行状态的展示别名。留空则回退为默认文案。",
+      "ruleLabel": "使用场景：{rule}",
+      "save": "保存状态别名",
+      "title": "运行状态别名"
+    },
+    "statusDefaults": {
+      "crashed": "异常",
+      "idle": "空闲",
+      "offline": "离线",
+      "working": "工作中"
+    },
+    "statusLabels": {
+      "crashed": "异常",
+      "idle": "空闲",
+      "offline": "离线",
+      "working": "工作中"
+    },
+    "statusRules": {
+      "crashed": "当 Agent 运行异常或进程崩溃时显示。",
+      "idle": "当 Agent 在线但当前没有任务时显示。",
+      "offline": "当 Agent 不在线或未连接时显示。",
+      "working": "当 Agent 正在执行任务时显示。"
+    },
+    "statusUpdated": "状态别名已保存",
+    "subtitle": "管理系统语言、汇率偏好、运行状态别名，以及公网访问配置。",
+    "title": "系统设置"
+  },
+  "tasks": {
+    "actions": {
+      "approve": "通过",
+      "reject": "驳回",
+      "send": "发送",
+      "spawn": "派生",
+      "submit": "提交"
+    },
+    "create": {
+      "fields": {
+        "acceptanceCriteria": "验收标准",
+        "assignee": "执行 Agent",
+        "description": "任务描述",
+        "expectedOutput": "预期输出",
+        "title": "任务标题"
+      },
+      "submit": "创建任务",
+      "title": "创建任务"
+    },
+    "list": {
+      "headers": {
+        "actions": "操作",
+        "assignee": "执行者",
+        "status": "状态",
+        "task": "任务"
+      },
+      "title": "任务列表（待处理 {count}）"
+    },
+    "prompts": {
+      "receiptDefault": "任务已通过审核，请继续推进。",
+      "receiptTitle": "输入回执内容",
+      "rejectDefault": "请根据评审意见修改后重新提交。",
+      "rejectTitle": "输入驳回说明",
+      "scoreDefault": "10",
+      "scoreTitle": "输入加分",
+      "submitSummaryDefault": "已完成任务，等待审核。",
+      "submitSummaryTitle": "输入提交摘要"
+    },
+    "status": {
+      "doing": "执行中",
+      "done": "已完成",
+      "rejected": "已驳回",
+      "review": "待审核",
+      "todo": "待派发"
+    }
+  },
+  "training": {
+    "actions": {
+      "approve": "通过",
+      "reject": "打回"
+    },
+    "onboarding": {
+      "agentId": "Agent ID",
+      "agentName": "{agentId}（待入职）",
+      "agentPlaceholder": "输入要入职的 Agent ID",
+      "confirm": "确认并触发训练",
+      "manual": "仅创建训练 Run",
+      "roleSummary": "待补充角色说明",
+      "title": "入职确认"
+    },
+    "phase": {
+      "exam": "考试",
+      "gate": "Gate",
+      "observe": "观察期"
+    },
+    "prompts": {
+      "scoreFailDefault": "60",
+      "scorePassDefault": "80",
+      "scoreTitle": "输入评分"
+    },
+    "result": {
+      "graduate": "毕业",
+      "remediate": "补训"
+    },
+    "runs": {
+      "headers": {
+        "agent": "Agent",
+        "gate": "Gate",
+        "phase": "阶段",
+        "result": "结果",
+        "runId": "Run ID",
+        "status": "状态"
+      },
+      "title": "训练运行列表"
+    }
+  },
+  "scheduleTimeline": {
+    "range": {
+      "24h": "24 小时",
+      "7d": "7 天",
+      "30d": "30 天"
+    },
+    "cadence": {
+      "all": "全部"
+    },
+    "minutes": {
+      "zero": "0 分钟",
+      "hoursExact": "{hours} 小时",
+      "hoursApprox": "{hours} 小时",
+      "minutes": "{minutes} 分钟"
+    },
+    "decadeLabel": "{decade} 年代",
+    "errors": {
+      "readFailed": "读取时间线失败",
+      "saveFailed": "保存定时任务失败"
+    },
+    "notices": {
+      "updated": "已更新 {name}"
+    },
+    "header": {
+      "eyebrow": "Agent 调度总览",
+      "title": "定时任务管理",
+      "subtitle": "按 Agent 查看任务覆盖、冲突与空闲区间，支持时间线多粒度对比，也可以直接点任务块进入编辑。"
+    },
+    "filters": {
+      "windowLabel": "时间窗",
+      "cadenceLabel": "调度周期",
+      "note": "当前筛选的是任务的执行周期类型，不是时间轴跨度。",
+      "noteAll": "“全部”会展示所有周期类型。",
+      "noteOnly": "当前仅显示“{label}”类型任务。",
+      "agentLabel": "Agent 筛选",
+      "agentHint": "未选择任何 Agent 时展示全部"
+    },
+    "states": {
+      "refreshing": "正在刷新时间线...",
+      "emptyAgents": "当前筛选条件下没有可展示的 Agent。"
+    },
+    "registryMissing": {
+      "badge": "定时任务注册表未就绪",
+      "title": "还没有可管理的定时任务",
+      "description": "当前环境还没有读到可用的定时任务注册表，通常是因为首页的节点接入或初始化配置还没完成。先前往首页完成接入，再回来查看这里的时间线和冲突分析。",
+      "goHome": "前往首页配置",
+      "refresh": "刷新页面",
+      "tipTitle": "接入提示",
+      "step1Title": "1. 前往 AGENT 接入首页",
+      "step1Description": "使用首页向导完成本地节点接入。",
+      "step2Title": "2. 等待初始化完成",
+      "step2Description": "节点上线并生成任务注册表后，这里才会出现可视化时间线。"
+    },
+    "legend": {
+      "title": "全部模式 = 总览热力视图",
+      "light": "浅色表示较少任务",
+      "dark": "深色表示较高密度",
+      "conflict": "红色表示冲突区",
+      "scaleHint": "时间轴刻度会按时间窗自动切换"
+    },
+    "summary": {
+      "title": "定时任务汇总",
+      "scaleGroup": "时间刻度分组",
+      "currentCadence": "当前周期筛选：{label}",
+      "currentScale": "当前时间刻度：{label}"
+    },
+    "rowStats": {
+      "coverage": "覆盖率 {value}",
+      "occupied": "占用 {value}",
+      "conflict": "冲突 {value}",
+      "enabledJobs": "启用任务 {value}",
+      "jobsShort": "任务"
+    },
+    "bucket": {
+      "conflictLabel": "{count}任务 · {conflicts}处冲突",
+      "countLabel": "{count}任务",
+      "idleLabel": "空闲",
+      "estimatedSuffix": " · 估算{count}",
+      "clickHint": "点击编辑",
+      "popoverTitle": "{count} 个任务"
+    },
+    "row": {
+      "emptyOccurrences": "当前时间窗内没有启用中的任务块",
+      "idleRangeTitle": "空闲区间",
+      "conflictRangeTitle": "冲突区间",
+      "estimatedTag": "估算"
+    },
+    "editor": {
+      "eyebrow": "时间线编辑",
+      "close": "关闭",
+      "disable": "停用",
+      "enable": "启用",
+      "saving": "保存中",
+      "saveAndRefresh": "保存并刷新时间线",
+      "sectionTitle": "任务基础信息",
+      "deliverySection": "结果发送",
+      "deliveryModeLabel": "发送方式",
+      "templateLabel": "消息模板",
+      "deliveryTargetLabel": "发送对象",
+      "deliveryTargetEmpty": "当前还没有配置明确的发送对象。",
+      "templateEmpty": "当前还没有绑定模板。",
+      "fixedTopicLabel": "固定话题群",
+      "fixedTopicEnabled": "已启用固定话题群模式",
+      "fixedTopicDisabled": "当前不是固定话题群模式",
+      "payloadModeLabel": "Payload 模式",
+      "payloadModeDefault": "默认",
+      "nextRun": "下次执行",
+      "lastRun": "最近执行",
+      "lastStatus": "最近状态",
+      "lastStatusEmpty": "未记录",
+      "updatedAt": "最后更新",
+      "activeBlockTitle": "当前块信息",
+      "blockStart": "开始：",
+      "blockEnd": "结束：",
+      "blockEmpty": "当前时间窗内无对应块"
+    }
+  }
+}
